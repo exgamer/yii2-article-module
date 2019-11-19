@@ -13,6 +13,7 @@ use concepture\yii2handbook\models\traits\DomainTrait;
 use concepture\yii2user\models\traits\UserTrait;
 use concepture\yii2logic\models\traits\IsDeletedTrait;
 use concepture\yii2logic\models\traits\HasTreeTrait;
+use concepture\yii2logic\validators\MD5Validator;
 
 /**
  * Class PostCategory
