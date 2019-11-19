@@ -124,7 +124,7 @@ class PostCategory extends ActiveRecord
             'id' => Yii::t('article','#'),
             'user_id' => Yii::t('article','Пользователь'),
             'domain_id' => Yii::t('article','Домен'),
-            'parent_id' => Yii::t('comment','ID родителя'),
+            'parent_id' => Yii::t('comment','Родитель'),
             'status' => Yii::t('article','Статус'),
             'image' => Yii::t('article','Изображение'),
             'locale' => Yii::t('article','Язык'),
