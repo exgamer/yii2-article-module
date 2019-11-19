@@ -50,6 +50,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
             ],
             'seo_name',
+            [
+                'attribute'=>'category_id',
+                'value'=>function($data) {
+                    return $data->getCategoryTitle();
+                }
+            ],
             'url',
             'seo_h1',
             'seo_title',
