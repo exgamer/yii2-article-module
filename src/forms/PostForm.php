@@ -13,6 +13,7 @@ use Yii;
 class PostForm extends Form
 {
     public $user_id;
+    public $category_id;
     public $domain_id;
     public $locale = "ru";
     public $url;
@@ -38,6 +39,7 @@ class PostForm extends Form
                     'title',
                     'content',
                     'locale',
+                    'category_id',
                 ],
                 'required'
             ],

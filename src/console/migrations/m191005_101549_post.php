@@ -18,7 +18,7 @@ class m191005_101549_post extends Migration
             'id' => $this->bigPrimaryKey(),
             'user_id' => $this->bigInteger()->notNull(),
             'domain_id' => $this->bigInteger(),
-            'category_id' => $this->bigInteger(),
+            'category_id' => $this->bigInteger()->notNull(),
             'image' => $this->string(1024),
             'status' => $this->smallInteger()->defaultValue(0),
             'created_at' => $this->dateTime()->defaultValue(new \yii\db\Expression("NOW()")),

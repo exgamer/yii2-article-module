@@ -26,6 +26,7 @@ class PostSearch extends Post
                     'id',
                     'status',
                     'domain_id',
+                    'category_id',
                     'is_deleted',
                 ],
                 'integer'
@@ -51,6 +52,9 @@ class PostSearch extends Post
         ]);
         $query->andFilterWhere([
             'domain_id' => $this->domain_id
+        ]);
+        $query->andFilterWhere([
+            'category_id' => $this->category_id
         ]);
         $query->andFilterWhere([
             'url' => $this->url

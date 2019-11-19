@@ -60,6 +60,7 @@ class Post extends ActiveRecord
                     'status',
                     'user_id',
                     'domain_id',
+                    'category_id',
                     'locale'
                 ],
                 'integer'
@@ -121,6 +122,7 @@ class Post extends ActiveRecord
             'id' => Yii::t('article','#'),
             'user_id' => Yii::t('article','Пользователь'),
             'domain_id' => Yii::t('article','Домен'),
+            'category_id' => Yii::t('article','Категория'),
             'status' => Yii::t('article','Статус'),
             'locale' => Yii::t('article','Язык'),
             'image' => Yii::t('article','Изображение'),
