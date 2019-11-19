@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $model concepture\article\models\PostCategory */
 
 $this->title = Yii::t('backend', 'Добавить');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('static', 'Статические блоки'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('article', 'Посты'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="post-category-create">

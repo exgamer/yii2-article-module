@@ -7,15 +7,19 @@ use concepture\yii2logic\enum\StatusEnum;
 use Yii;
 
 /**
- * Class StaticBlockForm
+ * Class PostCategoryForm
  * @package concepture\yii2article\forms
  * @author Olzhas Kulzhambekov <exgamer@live.ru>
  */
-class StaticBlockForm extends Form
+class PostCategoryForm extends Form
 {
     public $user_id;
     public $domain_id;
+    public $parent_id;
     public $locale = "ru";
+    public $url;
+    public $url_md5_hash;
+    public $image;
     public $title;
     public $content;
     public $seo_name;
@@ -34,7 +38,6 @@ class StaticBlockForm extends Form
             [
                 [
                     'title',
-                    'content',
                     'locale',
                 ],
                 'required'

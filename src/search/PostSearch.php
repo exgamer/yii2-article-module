@@ -2,17 +2,17 @@
 
 namespace concepture\yii2article\search;
 
-use concepture\yii2article\models\StaticPage;
+use concepture\yii2article\models\Post;
 use yii\db\ActiveQuery;
 use Yii;
 use yii\data\ActiveDataProvider;
 
 /**
- * Class StaticPageSearch
+ * Class PostSearch
  * @package concepture\yii2article\search
  * @author Olzhas Kulzhambekov <exgamer@live.ru>
  */
-class StaticPageSearch extends StaticPage
+class PostSearch extends Post
 {
 
     /**

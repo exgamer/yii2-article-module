@@ -2,7 +2,7 @@
 
 namespace concepture\yii2article\search;
 
-use concepture\yii2article\models\StaticBlock;
+use concepture\yii2article\models\PostCategory;
 use yii\db\ActiveQuery;
 use Yii;
 use yii\data\ActiveDataProvider;
@@ -12,7 +12,7 @@ use yii\data\ActiveDataProvider;
  * @package concepture\yii2article\search
  * @author Olzhas Kulzhambekov <exgamer@live.ru>
  */
-class StaticBlockSearch extends StaticBlock
+class PostCategorySearch extends PostCategory
 {
 
     /**
@@ -27,6 +27,7 @@ class StaticBlockSearch extends StaticBlock
                     'status',
                     'domain_id',
                     'is_deleted',
+                    'parent_id',
                 ],
                 'integer'
             ],
@@ -49,6 +50,9 @@ class StaticBlockSearch extends StaticBlock
             'status' => $this->status
         ]);
         $query->andFilterWhere([
+            'parent_id' => $this->parent_id
+        ]);
+        $query->andFilterWhere([
             'domain_id' => $this->domain_id
         ]);
         $query->andFilterWhere([
@@ -64,5 +68,15 @@ class StaticBlockSearch extends StaticBlock
     {
         $this->addSortByLocalizationAttribute($dataProvider, 'seo_name');
         $this->addSortByLocalizationAttribute($dataProvider, 'title');
+    }
+
+    public static function getListSearchKeyAttribute()
+    {
+        return 'id';
+    }
+
+    public static function getListSearchAttribute()
+    {
+        return 'title';
     }
 }

@@ -5,19 +5,21 @@ use concepture\yii2logic\console\migrations\Migration;
 /**
  * Class m191002_151207_static_table
  */
-class m191002_151207_static_table extends Migration
+class m191002_151207_post_category_table extends Migration
 {
     function getTableName()
     {
-        return 'static_page';
+        return 'post_category';
     }
 
     public function up()
     {
         $this->addTable([
             'id' => $this->bigPrimaryKey(),
-            'user_id' => $this->bigInteger()->notNull(),
             'domain_id' => $this->bigInteger(),
+            'parent_id' => $this->bigInteger()->defaultValue(null),
+            'user_id' => $this->bigInteger()->defaultValue(null),
+            'image' => $this->string(1024),
             'status' => $this->smallInteger()->defaultValue(0),
             'created_at' => $this->dateTime()->defaultValue(new \yii\db\Expression("NOW()")),
             'updated_at' => $this->dateTime()->append('ON UPDATE NOW()'),
@@ -29,5 +31,6 @@ class m191002_151207_static_table extends Migration
         $this->addIndex(['is_deleted']);
         $this->addForeign('user_id', 'user','id');
         $this->addForeign('domain_id', 'domain','id');
+        $this->addForeign('parent_id', 'post_category','id');
     }
 }

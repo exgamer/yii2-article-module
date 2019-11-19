@@ -11,11 +11,11 @@ use concepture\yii2logic\db\LocalizedActiveQuery;
 use concepture\yii2logic\enum\IsDeletedEnum;
 
 /**
- * Class StaticPageService
- * @package concepture\yii2article\service
+ * Class PostService
+ * @package concepture\yii2article\services
  * @author Olzhas Kulzhambekov <exgamer@live.ru>
  */
-class StaticPageService extends Service
+class PostService extends Service
 {
     use StatusTrait;
     use LocalizedReadTrait;

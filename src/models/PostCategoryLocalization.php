@@ -1,22 +1,20 @@
 <?php
 namespace concepture\yii2article\models;
 
-use Yii;
 use concepture\yii2logic\models\ActiveRecord;
-use concepture\yii2logic\validators\TranslitValidator;
 
 /**
- * StaticBlockLocalization model
- *
+ * Class PostCategoryLocalization
+ * @package concepture\yii2article\models
  * @author Olzhas Kulzhambekov <exgamer@live.ru>
  */
-class StaticBlockLocalization extends ActiveRecord
+class PostCategoryLocalization extends ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return '{{static_block_localization}}';
+        return '{{post_category_localization}}';
     }
 }

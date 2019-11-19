@@ -1,6 +1,7 @@
 <?php
 namespace concepture\yii2article\models;
 
+use concepture\yii2handbook\converters\LocaleConverter;
 use concepture\yii2user\models\User;
 use concepture\yii2logic\validators\UniquePropertyValidator;
 use Yii;
@@ -8,40 +9,29 @@ use concepture\yii2logic\models\ActiveRecord;
 use concepture\yii2logic\validators\TranslitValidator;
 use concepture\yii2logic\models\traits\HasLocalizationTrait;
 use concepture\yii2logic\models\traits\StatusTrait;
-use concepture\yii2handbook\converters\LocaleConverter;
 use concepture\yii2handbook\models\traits\DomainTrait;
 use concepture\yii2user\models\traits\UserTrait;
+use concepture\yii2logic\validators\MD5Validator;
 use concepture\yii2logic\models\traits\IsDeletedTrait;
 
 /**
- * StaticBlock model
- *
- * @property integer $id
- * @property integer $user_id
- * @property integer $locale
- * @property string $title
- * @property string $content
- * @property string $seo_name
- * @property string $seo_title
- * @property string $seo_description
- * @property string $seo_keywords
- * @property integer $status
- * @property datetime $created_at
- * @property datetime $updated_at
- *
+ * Class Post
+ * @package concepture\yii2article\models
  * @author Olzhas Kulzhambekov <exgamer@live.ru>
  */
-class StaticBlock extends ActiveRecord
+class Post extends ActiveRecord
 {
     public $allow_physical_delete = false;
 
     use HasLocalizationTrait;
     use StatusTrait;
-    use IsDeletedTrait;
     use DomainTrait;
     use UserTrait;
+    use IsDeletedTrait;
 
     public $locale;
+    public $url;
+    public $url_md5_hash;
     public $title;
     public $content;
     public $seo_name;
@@ -56,7 +46,7 @@ class StaticBlock extends ActiveRecord
      */
     public static function tableName()
     {
-        return '{{static_block}}';
+        return '{{post}}';
     }
 
     /**
@@ -85,9 +75,19 @@ class StaticBlock extends ActiveRecord
                     'title',
                     'seo_name',
                     'seo_h1',
+                    'url',
+                    'url_md5_hash',
+                    'image',
                 ],
                 'string',
                 'max'=>1024
+            ],
+            [
+                [
+                    'url_md5_hash',
+                ],
+                MD5Validator::className(),
+                'source' => 'url'
             ],
             [
                 [
@@ -99,6 +99,7 @@ class StaticBlock extends ActiveRecord
             [
                 [
                     'seo_name',
+                    'url',
                 ],
                 UniquePropertyValidator::class
             ],
@@ -117,20 +118,23 @@ class StaticBlock extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('static','#'),
-            'user_id' => Yii::t('static','Пользователь'),
-            'domain_id' => Yii::t('static','Домен'),
-            'status' => Yii::t('static','Статус'),
-            'locale' => Yii::t('static','Язык'),
-            'title' => Yii::t('static','Название'),
-            'content' => Yii::t('static','Контент'),
-            'seo_name' => Yii::t('static','SEO название'),
-            'seo_h1' => Yii::t('static','SEO H1'),
-            'seo_title' => Yii::t('static','SEO title'),
-            'seo_description' => Yii::t('static','SEO description'),
-            'seo_keywords' => Yii::t('static','SEO keywords'),
-            'created_at' => Yii::t('static','Дата создания'),
-            'updated_at' => Yii::t('static','Дата обновления'),
+            'id' => Yii::t('article','#'),
+            'user_id' => Yii::t('article','Пользователь'),
+            'domain_id' => Yii::t('article','Домен'),
+            'status' => Yii::t('article','Статус'),
+            'locale' => Yii::t('article','Язык'),
+            'image' => Yii::t('article','Изображение'),
+            'url' => Yii::t('article','url страницы'),
+            'url_md5_hash' => Yii::t('article','md5 url страницы'),
+            'title' => Yii::t('article','Название'),
+            'content' => Yii::t('article','Контент'),
+            'seo_name' => Yii::t('article','SEO название'),
+            'seo_h1' => Yii::t('article','SEO H1'),
+            'seo_title' => Yii::t('article','SEO title'),
+            'seo_description' => Yii::t('article','SEO description'),
+            'seo_keywords' => Yii::t('article','SEO keywords'),
+            'created_at' => Yii::t('article','Дата создания'),
+            'updated_at' => Yii::t('article','Дата обновления'),
             'is_deleted' => Yii::t('banner','Удален'),
         ];
     }
@@ -144,16 +148,16 @@ class StaticBlock extends ActiveRecord
 
     public function beforeDelete()
     {
-       $this->deleteLocalizations();
+        $this->deleteLocalizations();
 
-       return parent::beforeDelete();
+        return parent::beforeDelete();
     }
 
     public function afterFind()
     {
         $this->setLocalizations();
 
-       return parent::afterFind();
+        return parent::afterFind();
     }
 
     public static function getLocaleConverterClass()

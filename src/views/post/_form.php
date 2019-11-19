@@ -9,7 +9,7 @@ use yii\widgets\Pjax;
 <div class="post-category-form">
     <?php Pjax::begin(); ?>
     <div class="form-group">
-        <?= Html::label(Yii::t('static', 'Версии'))?>
+        <?= Html::label(Yii::t('article', 'Версии'))?>
         <?php foreach (Yii::$app->localeService->catalog() as $key => $locale):?>
             <?= Html::a(
                 $locale,
@@ -23,6 +23,7 @@ use yii\widgets\Pjax;
 
     <?php $form = ActiveForm::begin() ?>
     <?= $form->errorSummary($model) ?>
+    <?= $form->field($model, 'image')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'content')->widget(CKEditor::className(),[
@@ -32,7 +33,15 @@ use yii\widgets\Pjax;
             'allowedContent' => true,
         ],
     ]); ?>
+    <?= $form->field($model, 'url')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'seo_name')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'seo_h1')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'seo_title')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'seo_description')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'seo_keywords')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'domain_id')->dropDownList(
         Yii::$app->domainService->catalog(),
@@ -42,7 +51,7 @@ use yii\widgets\Pjax;
     );?>
 
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('static', 'Сохранить'), ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton(Yii::t('article', 'Сохранить'), ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

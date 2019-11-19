@@ -1,8 +1,8 @@
 <?php
 namespace concepture\yii2article\traits;
 
-use concepture\yii2article\services\StaticBlockService;
-use concepture\yii2article\services\StaticPageService;
+use concepture\yii2article\services\PostCategoryService;
+use concepture\yii2article\services\PostService;
 use Yii;
 
 /**
@@ -13,19 +13,19 @@ use Yii;
 trait ServicesTrait
 {
     /**
-     * @return StaticBlockService
+     * @return PostCategoryService
      */
-    public function staticBlockService()
+    public function postCategoryService()
     {
-        return Yii::$app->staticBlockService;
+        return Yii::$app->postCategoryService;
     }
 
     /**
-     * @return StaticPageService
+     * @return PostService
      */
-    public function staticPageService()
+    public function postService()
     {
-        return Yii::$app->staticPageService;
+        return Yii::$app->postService;
     }
 }
 

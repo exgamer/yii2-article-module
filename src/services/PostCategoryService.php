@@ -6,15 +6,16 @@ use concepture\yii2logic\services\Service;
 use Yii;
 use concepture\yii2logic\services\traits\StatusTrait;
 use concepture\yii2logic\services\traits\LocalizedReadTrait;
-
+use concepture\yii2logic\services\traits\TreeReadTrait;
 
 /**
- * Class StaticBlockService
- * @package concepture\yii2article\service
+ * Class PostCategoryService
+ * @package concepture\yii2article\services
  * @author Olzhas Kulzhambekov <exgamer@live.ru>
  */
-class StaticBlockService extends Service
+class PostCategoryService extends Service
 {
+    use TreeReadTrait;
     use StatusTrait;
     use LocalizedReadTrait;
 

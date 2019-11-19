@@ -1,7 +1,6 @@
 <?php
 namespace concepture\yii2article\models;
 
-use concepture\yii2handbook\converters\LocaleConverter;
 use concepture\yii2user\models\User;
 use concepture\yii2logic\validators\UniquePropertyValidator;
 use Yii;
@@ -9,39 +8,27 @@ use concepture\yii2logic\models\ActiveRecord;
 use concepture\yii2logic\validators\TranslitValidator;
 use concepture\yii2logic\models\traits\HasLocalizationTrait;
 use concepture\yii2logic\models\traits\StatusTrait;
+use concepture\yii2handbook\converters\LocaleConverter;
 use concepture\yii2handbook\models\traits\DomainTrait;
 use concepture\yii2user\models\traits\UserTrait;
-use concepture\yii2logic\validators\MD5Validator;
 use concepture\yii2logic\models\traits\IsDeletedTrait;
+use concepture\yii2logic\models\traits\HasTreeTrait;
 
 /**
- * StaticPage model
- *
- * @property integer $id
- * @property integer $user_id
- * @property integer $locale
- * @property string $url
- * @property string $title
- * @property string $content
- * @property string $seo_name
- * @property string $seo_title
- * @property string $seo_description
- * @property string $seo_keywords
- * @property integer $status
- * @property datetime $created_at
- * @property datetime $updated_at
- *
+ * Class PostCategory
+ * @package concepture\yii2article\models
  * @author Olzhas Kulzhambekov <exgamer@live.ru>
  */
-class StaticPage extends ActiveRecord
+class PostCategory extends ActiveRecord
 {
     public $allow_physical_delete = false;
 
+    use HasTreeTrait;
     use HasLocalizationTrait;
     use StatusTrait;
+    use IsDeletedTrait;
     use DomainTrait;
     use UserTrait;
-    use IsDeletedTrait;
 
     public $locale;
     public $url;
@@ -60,7 +47,7 @@ class StaticPage extends ActiveRecord
      */
     public static function tableName()
     {
-        return '{{static_page}}';
+        return '{{post_category}}';
     }
 
     /**
@@ -74,6 +61,7 @@ class StaticPage extends ActiveRecord
                     'status',
                     'user_id',
                     'domain_id',
+                    'parent_id',
                     'locale'
                 ],
                 'integer'
@@ -91,6 +79,7 @@ class StaticPage extends ActiveRecord
                     'seo_h1',
                     'url',
                     'url_md5_hash',
+                    'image',
                 ],
                 'string',
                 'max'=>1024
@@ -131,45 +120,49 @@ class StaticPage extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('static','#'),
-            'user_id' => Yii::t('static','Пользователь'),
-            'domain_id' => Yii::t('static','Домен'),
-            'status' => Yii::t('static','Статус'),
-            'locale' => Yii::t('static','Язык'),
-            'url' => Yii::t('static','url страницы'),
-            'url_md5_hash' => Yii::t('static','md5 url страницы'),
-            'title' => Yii::t('static','Название'),
-            'content' => Yii::t('static','Контент'),
-            'seo_name' => Yii::t('static','SEO название'),
-            'seo_h1' => Yii::t('static','SEO H1'),
-            'seo_title' => Yii::t('static','SEO title'),
-            'seo_description' => Yii::t('static','SEO description'),
-            'seo_keywords' => Yii::t('static','SEO keywords'),
-            'created_at' => Yii::t('static','Дата создания'),
-            'updated_at' => Yii::t('static','Дата обновления'),
-            'is_deleted' => Yii::t('banner','Удален'),
+            'id' => Yii::t('article','#'),
+            'user_id' => Yii::t('article','Пользователь'),
+            'domain_id' => Yii::t('article','Домен'),
+            'parent_id' => Yii::t('comment','ID родителя'),
+            'status' => Yii::t('article','Статус'),
+            'image' => Yii::t('article','Изображение'),
+            'locale' => Yii::t('article','Язык'),
+            'url' => Yii::t('article','url страницы'),
+            'url_md5_hash' => Yii::t('article','md5 url страницы'),
+            'title' => Yii::t('article','Название'),
+            'content' => Yii::t('article','Контент'),
+            'seo_name' => Yii::t('article','SEO название'),
+            'seo_h1' => Yii::t('article','SEO H1'),
+            'seo_title' => Yii::t('article','SEO title'),
+            'seo_description' => Yii::t('article','SEO description'),
+            'seo_keywords' => Yii::t('article','SEO keywords'),
+            'created_at' => Yii::t('article','Дата создания'),
+            'updated_at' => Yii::t('article','Дата обновления'),
+            'is_deleted' => Yii::t('article','Удален'),
         ];
     }
 
     public function afterSave($insert, $changedAttributes)
     {
         $this->saveLocalizations();
+        $this->bindTree();
 
         return parent::afterSave($insert, $changedAttributes);
     }
 
     public function beforeDelete()
     {
-        $this->deleteLocalizations();
+       $this->deleteLocalizations();
+        $this->removeTree();
 
-        return parent::beforeDelete();
+       return parent::beforeDelete();
     }
 
     public function afterFind()
     {
         $this->setLocalizations();
 
-        return parent::afterFind();
+       return parent::afterFind();
     }
 
     public static function getLocaleConverterClass()

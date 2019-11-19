@@ -6,11 +6,11 @@ use concepture\yii2logic\forms\Form;
 use Yii;
 
 /**
- * Class StaticPageForm
+ * Class PostForm
  * @package concepture\yii2article\forms
  * @author Olzhas Kulzhambekov <exgamer@live.ru>
  */
-class StaticPageForm extends Form
+class PostForm extends Form
 {
     public $user_id;
     public $domain_id;
@@ -18,6 +18,7 @@ class StaticPageForm extends Form
     public $url;
     public $url_md5_hash;
     public $title;
+    public $image;
     public $content;
     public $seo_name;
     public $seo_h1;

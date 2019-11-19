@@ -8,11 +8,11 @@ use concepture\yii2logic\actions\web\StatusChangeLocalizedAction;
 use concepture\yii2logic\actions\web\UndeleteLocalizedAction;
 
 /**
- * Class StaticPageController
+ * Class PostController
  * @package concepture\yii2article\web\controllers
  * @author Olzhas Kulzhambekov <exgamer@live.ru>
  */
-class StaticPageController extends Controller
+class PostController extends Controller
 {
     protected function getAccessRules()
     {

@@ -1,17 +1,16 @@
 <?php
 
-
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model concepture\article\models\PostCategory */
 
-$this->title = Yii::t('backend', 'Редактировать страницу: {name}', [
+$this->title = Yii::t('backend', 'Редактировать: {name}', [
     'name' => $model->title,
 ]);
-$this->params['breadcrumbs'][] = ['label' => Yii::t('static', 'Статические страницы'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('article', 'Категории постов'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->title, 'url' => ['view', 'id' => $originModel->id]];
-$this->params['breadcrumbs'][] = Yii::t('static', 'Редактировать');
+$this->params['breadcrumbs'][] = Yii::t('article', 'Редактировать');
 ?>
 <div class="post-category-update">
 

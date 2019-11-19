@@ -3,13 +3,13 @@
 use concepture\yii2logic\console\migrations\Migration;
 
 /**
- * Class m191002_151217_static_table_localization
+ * Class m191005_101557_static_block_localization
  */
-class m191002_151217_static_table_localization extends Migration
+class m191005_101557_post_localization extends Migration
 {
     function getTableName()
     {
-        return 'static_page_localization';
+        return 'post_localization';
     }
 
     public function up()
@@ -32,10 +32,10 @@ class m191002_151217_static_table_localization extends Migration
         $this->addIndex(['entity_id', 'locale'], true);
         $this->addIndex(['locale']);
         $this->addIndex(['url']);
-        $this->execute("ALTER TABLE static_page_localization
+        $this->execute("ALTER TABLE post_localization
             ADD INDEX spl_url_md5_hash_index
             USING HASH (url_md5_hash);");
-        $this->addForeign('entity_id', 'static_page','id');
+        $this->addForeign('entity_id', 'post','id');
         $this->addForeign('locale', 'locale','id');
     }
 }

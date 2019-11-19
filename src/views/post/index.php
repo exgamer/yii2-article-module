@@ -9,7 +9,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel backend\search\PostCategorySearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('backend', 'Статические блоки');
+$this->title = Yii::t('backend', 'Посты');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="post-category-index">
@@ -17,12 +17,12 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a(Yii::t('static', 'Добавить'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('article', 'Добавить'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php Pjax::begin(); ?>
     <div class="form-group">
-        <?= Html::label(Yii::t('static', 'Версии'))?>
+        <?= Html::label(Yii::t('article', 'Версии'))?>
         <?php foreach (Yii::$app->localeService->catalog() as $key => $locale):?>
             <?= Html::a(
                 $locale,
@@ -115,8 +115,8 @@ $this->params['breadcrumbs'][] = $this->title;
                             '<span class="glyphicon glyphicon-ok"></span>',
                             ['status-change', 'id' => $model['id'], 'status' => StatusEnum::ACTIVE],
                             [
-                                'title' => Yii::t('static', 'Активировать'),
-                                'data-confirm' => Yii::t('static', 'Активировать ?'),
+                                'title' => Yii::t('article', 'Активировать'),
+                                'data-confirm' => Yii::t('article', 'Активировать ?'),
                                 'data-method' => 'post',
                             ]
                         );
@@ -125,15 +125,17 @@ $this->params['breadcrumbs'][] = $this->title;
                         if ($model['is_deleted'] == IsDeletedEnum::DELETED){
                             return '';
                         }
+
                         if ($model['status'] == StatusEnum::INACTIVE){
                             return '';
                         }
+
                         return Html::a(
                             '<span class="glyphicon glyphicon-remove"></span>',
                             ['status-change', 'id' => $model['id'], 'status' => StatusEnum::INACTIVE],
                             [
-                                'title' => Yii::t('static', 'Деактивировать'),
-                                'data-confirm' => Yii::t('static', 'Деактивировать ?'),
+                                'title' => Yii::t('article', 'Деактивировать'),
+                                'data-confirm' => Yii::t('article', 'Деактивировать ?'),
                                 'data-method' => 'post',
                             ]
                         );
