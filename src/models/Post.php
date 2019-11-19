@@ -164,4 +164,18 @@ class Post extends ActiveRecord
     {
         return LocaleConverter::class;
     }
+
+    public function getCategory()
+    {
+        return $this->hasOne(PostCategory::className(), ['id' => 'category_id']);
+    }
+
+    public function getCategoryTitle()
+    {
+        if (isset($this->category)){
+            return $this->category->title;
+        }
+
+        return null;
+    }
 }
