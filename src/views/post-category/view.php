@@ -51,6 +51,13 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'seo_name',
             [
+                'attribute'=>'parent_id',
+                'filter'=> Yii::$app->postCategoryService->catalog(),
+                'value'=>function($data) {
+                    return $data->getParentTitle();
+                }
+            ],
+            [
                 'attribute'=>'status',
                 'value'=>$model->statusLabel(),
             ],

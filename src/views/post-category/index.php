@@ -65,6 +65,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
             ],
             [
+                'attribute'=>'parent_id',
+                'filter'=> Yii::$app->postCategoryService->catalog(),
+                'value'=>function($data) {
+                    return $data->getParentTitle();
+                }
+            ],
+            [
                 'attribute'=>'Версии',
                 'value'=>function($data) {
 

@@ -170,4 +170,13 @@ class PostCategory extends ActiveRecord
     {
         return LocaleConverter::class;
     }
+
+    public function getParentTitle()
+    {
+        if (isset($this->parent)){
+            return $this->parent->title;
+        }
+
+        return null;
+    }
 }
