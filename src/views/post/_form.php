@@ -23,6 +23,12 @@ use yii\widgets\Pjax;
 
     <?php $form = ActiveForm::begin() ?>
     <?= $form->errorSummary($model) ?>
+    <?= $form->field($model, 'category_id')->dropDownList(
+        Yii::$app->postCategoryService->catalog(),
+        [
+            'prompt' => Yii::t('backend', 'Выберите категорию')
+        ]
+    );?>
     <?= $form->field($model, 'image')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
