@@ -28,6 +28,9 @@ class PostForm extends Form
     public $seo_keywords;
     public $status = 0;
 
+    public $selectedTags = [];
+    public $customTags;
+
     /**
      * @see CForm::formRules()
      */
@@ -43,6 +46,21 @@ class PostForm extends Form
                 ],
                 'required'
             ],
+            [
+                'selectedTags',
+                'each',
+                'rule' => ['integer']
+            ],
+            [
+                'customTags',
+                'string',
+                'max' => 100
+            ],
         ];
+    }
+
+    public function customizeForm(\yii\db\ActiveRecord $model)
+    {
+        $this->selectedTags = $model->getSelectedTagsIds();
     }
 }
