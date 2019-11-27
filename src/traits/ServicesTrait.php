@@ -3,6 +3,7 @@ namespace concepture\yii2article\traits;
 
 use concepture\yii2article\services\PostCategoryService;
 use concepture\yii2article\services\PostService;
+use concepture\yii2article\services\PostTagsLinkService;
 use Yii;
 
 /**
@@ -26,6 +27,14 @@ trait ServicesTrait
     public function postService()
     {
         return Yii::$app->postService;
+    }
+
+    /**
+     * @return PostTagsLinkService
+     */
+    public function postTagsLinkService()
+    {
+        return Yii::$app->postTagsLinkService;
     }
 }
 
