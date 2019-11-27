@@ -1,6 +1,7 @@
 <?php
 namespace concepture\yii2article\forms;
 
+use yii\db\ActiveRecord as YiiAr;
 use concepture\yii2core\models\ActiveRecord;
 use concepture\yii2logic\forms\Form;
 use Yii;
@@ -73,7 +74,7 @@ class PostForm extends Form
     /**
      * @see Form::customizeForm()
      */
-    public function customizeForm(ActiveRecord $model)
+    public function customizeForm(YiiAr $model)
     {
         $this->selectedTags = $model->getSelectedTagsIds();
     }
