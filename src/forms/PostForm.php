@@ -28,7 +28,18 @@ class PostForm extends Form
     public $seo_keywords;
     public $status = 0;
 
+    /**
+     * Выбранные теги
+     *
+     * @var array
+     */
     public $selectedTags = [];
+
+    /**
+     * Кастомные теги, это строка где пользователь может указать свои теги через запятую
+     *
+     * @var string
+     */
     public $customTags;
 
     /**
