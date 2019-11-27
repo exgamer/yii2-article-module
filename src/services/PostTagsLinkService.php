@@ -9,7 +9,7 @@ use Yii;
  * @package concepture\yii2article\services
  * @author Olzhas Kulzhambekov <exgamer@live.ru>
  */
-class PostTagsService extends Service
+class PostTagsLinkService extends Service
 {
 
 }

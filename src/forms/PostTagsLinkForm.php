@@ -10,7 +10,7 @@ use Yii;
  * @package concepture\yii2article\forms
  * @author Olzhas Kulzhambekov <exgamer@live.ru>
  */
-class PostTagsForm extends Form
+class PostTagsLinkForm extends Form
 {
     public $post_id;
     public $tag_id;

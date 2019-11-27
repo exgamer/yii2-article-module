@@ -12,7 +12,7 @@ use yii\data\ActiveDataProvider;
  * @package concepture\yii2article\search
  * @author Olzhas Kulzhambekov <exgamer@live.ru>
  */
-class PostTagsSearch extends PostCategory
+class PostTagsLinkSearch extends PostCategory
 {
 
     /**
