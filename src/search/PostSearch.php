@@ -14,7 +14,6 @@ use yii\data\ActiveDataProvider;
  */
 class PostSearch extends Post
 {
-
     /**
      * {@inheritdoc}
      */
@@ -35,10 +34,11 @@ class PostSearch extends Post
                 [
                     'title',
                     'seo_name',
-                    'url'
+                    'url',
+                    'tags'
                 ],
                 'safe'
-            ],
+            ]
         ];
     }
 
