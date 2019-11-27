@@ -69,6 +69,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute'=>'domain_id',
                 'value'=>$model->getDomainName(),
             ],
+            [
+                'attribute'=>'Теги',
+                'value'=>$model->getTagsLabel(),
+            ],
             'created_at',
             'updated_at',
             [
