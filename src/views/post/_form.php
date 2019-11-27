@@ -56,6 +56,16 @@ use yii\widgets\Pjax;
         ]
     );?>
 
+    <?= $form->field($model, 'selectedTags')->widget(\kartik\select2\Select2::classname(), [
+        'data' => Yii::$app->tagsService->catalog(),
+        'options' => ['placeholder' => Yii::t('article', 'Выберите теги ...'),'multiple' => true],
+        'pluginOptions' => [
+            'allowClear' => true
+        ],
+    ]);?>
+
+    <?= $form->field($model, 'customTags')->textInput(['maxlength' => true]) ?>
+
     <div class="form-group">
         <?= Html::submitButton(Yii::t('article', 'Сохранить'), ['class' => 'btn btn-success']) ?>
     </div>
