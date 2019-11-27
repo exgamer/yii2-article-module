@@ -48,6 +48,9 @@ class PostService extends Service
         };
 
         return $this->getOneByCondition(function(LocalizedActiveQuery $query) {
+            $domainId = Yii::$app->domainService->getCurrentDomainId();
+            $sql = "domain_id = :domain_id OR domain_id IS NULL";
+            $query->andWhere($sql, [':domain_id' => $domainId]);
             $query->andWhere("status = :status", [':status' => StatusEnum::ACTIVE]);
             $query->andWhere("is_deleted = :is_deleted", [':is_deleted' => IsDeletedEnum::NOT_DELETED]);
         });
