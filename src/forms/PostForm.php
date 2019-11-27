@@ -32,7 +32,7 @@ class PostForm extends Form
     public $customTags;
 
     /**
-     * @see CForm::formRules()
+     * @see Form::formRules()
      */
     public function formRules()
     {
@@ -59,6 +59,9 @@ class PostForm extends Form
         ];
     }
 
+    /**
+     * @see Form::customizeForm()
+     */
     public function customizeForm(ActiveRecord $model)
     {
         $this->selectedTags = $model->getSelectedTagsIds();
