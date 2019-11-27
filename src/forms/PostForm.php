@@ -71,6 +71,14 @@ class PostForm extends Form
         ];
     }
 
+    public function formAttributeLabels()
+    {
+        return [
+            'selectedTags' => Yii::t('handbook', 'Выбранные теги'),
+            'customTags' => Yii::t('handbook', 'Кастомные теги (вводить через запятую)'),
+        ];
+    }
+
     /**
      * @see Form::customizeForm()
      */
