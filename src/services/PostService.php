@@ -2,6 +2,7 @@
 namespace concepture\yii2article\services;
 
 use concepture\yii2logic\forms\Model;
+use concepture\yii2logic\models\ActiveRecord;
 use concepture\yii2logic\services\Service;
 use Yii;
 use concepture\yii2logic\services\traits\StatusTrait;
@@ -23,6 +24,11 @@ class PostService extends Service
     protected function beforeCreate(Model $form)
     {
         $form->user_id = Yii::$app->user->identity->id;
+    }
+
+    protected function afterModelSave(Model $form , ActiveRecord $model, $is_new_record)
+    {
+
     }
 
     /**
