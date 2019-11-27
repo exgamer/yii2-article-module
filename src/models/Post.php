@@ -13,6 +13,7 @@ use concepture\yii2handbook\models\traits\DomainTrait;
 use concepture\yii2user\models\traits\UserTrait;
 use concepture\yii2logic\validators\MD5Validator;
 use concepture\yii2logic\models\traits\IsDeletedTrait;
+use concepture\yii2handbook\models\traits\TagsTrait;
 
 /**
  * Class Post
@@ -28,6 +29,7 @@ class Post extends ActiveRecord
     use DomainTrait;
     use UserTrait;
     use IsDeletedTrait;
+    use TagsTrait;
 
     public $locale;
     public $url;
