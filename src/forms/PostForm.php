@@ -1,7 +1,7 @@
 <?php
 namespace concepture\yii2article\forms;
 
-
+use concepture\yii2core\models\ActiveRecord;
 use concepture\yii2logic\forms\Form;
 use Yii;
 
@@ -59,7 +59,7 @@ class PostForm extends Form
         ];
     }
 
-    public function customizeForm(\yii\db\ActiveRecord $model)
+    public function customizeForm(ActiveRecord $model)
     {
         $this->selectedTags = $model->getSelectedTagsIds();
     }
