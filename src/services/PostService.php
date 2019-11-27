@@ -1,6 +1,7 @@
 <?php
 namespace concepture\yii2article\services;
 
+use concepture\yii2article\traits\ServicesTrait as ArticleServices;
 use concepture\yii2logic\forms\Model;
 use concepture\yii2logic\models\ActiveRecord;
 use concepture\yii2logic\services\Service;
@@ -18,6 +19,7 @@ use concepture\yii2logic\enum\IsDeletedEnum;
  */
 class PostService extends Service
 {
+    use ArticleServices;
     use StatusTrait;
     use LocalizedReadTrait;
 
