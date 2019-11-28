@@ -23,9 +23,8 @@ class PostTagsLinkSearch extends PostCategory
         return [
             [
                 [
-                    'id',
-                    'post_id',
-                    'tag_id'
+                    'entity_id',
+                    'linked_id'
                 ],
                 'integer'
             ]
@@ -35,13 +34,10 @@ class PostTagsLinkSearch extends PostCategory
     protected function extendQuery(ActiveQuery $query)
     {
         $query->andFilterWhere([
-            static::tableName().'.id' => $this->id
+            'entity_id' => $this->entity_id
         ]);
         $query->andFilterWhere([
-            'post_id' => $this->post_id
-        ]);
-        $query->andFilterWhere([
-            'tag_id' => $this->tag_id
+            'linked_id' => $this->linked_id
         ]);
     }
 }

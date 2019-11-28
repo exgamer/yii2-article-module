@@ -30,7 +30,7 @@ class PostService extends Service
 
     protected function afterModelSave(Model $form , ActiveRecord $model, $is_new_record)
     {
-        $this->postTagsLinkService()->addTags($model->id, $form->selectedTags, $form->customTags);
+        $this->postTagsLinkService()->link($model->id, $form->selectedTags);
     }
 
     /**

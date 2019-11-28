@@ -64,8 +64,6 @@ use yii\widgets\Pjax;
         ],
     ]);?>
 
-    <?= $form->field($model, 'customTags')->textInput(['maxlength' => true]) ?>
-
     <div class="form-group">
         <?= Html::submitButton(Yii::t('article', 'Сохранить'), ['class' => 'btn btn-success']) ?>
     </div>

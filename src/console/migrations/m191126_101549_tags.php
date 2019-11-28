@@ -15,15 +15,14 @@ class m191126_101549_tags extends Migration
     public function up()
     {
         $this->addTable([
-            'id' => $this->bigPrimaryKey(),
-            'post_id' => $this->bigInteger()->notNull(),
-            'tag_id' => $this->bigInteger()->notNull(),
+            'entity_id' => $this->bigInteger()->notNull(),
+            'linked_id' => $this->bigInteger()->notNull(),
             'created_at' => $this->dateTime()->defaultValue(new \yii\db\Expression("NOW()"))
         ]);
-        $this->addIndex(['post_id']);
-        $this->addIndex(['tag_id']);
-        $this->addUniqueIndex(['post_id', 'tag_id']);
-        $this->addForeign('post_id', 'post','id');
-        $this->addForeign('tag_id', 'tags','id');
+        $this->addPK(['entity_id', 'linked_id']);
+        $this->addIndex(['entity_id']);
+        $this->addIndex(['linked_id']);
+        $this->addForeign('entity_id', 'post','id');
+        $this->addForeign('linked_id', 'tags','id');
     }
 }

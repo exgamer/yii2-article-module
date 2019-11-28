@@ -36,13 +36,6 @@ class PostForm extends Form
     public $selectedTags = [];
 
     /**
-     * Кастомные теги, это строка где пользователь может указать свои теги через запятую
-     *
-     * @var string
-     */
-    public $customTags;
-
-    /**
      * @see Form::formRules()
      */
     public function formRules()
@@ -61,20 +54,14 @@ class PostForm extends Form
                 'selectedTags',
                 'each',
                 'rule' => ['integer']
-            ],
-            [
-                'customTags',
-                'string',
-                'max' => 100
-            ],
+            ]
         ];
     }
 
     public function formAttributeLabels()
     {
         return [
-            'selectedTags' => Yii::t('handbook', 'Выбранные теги'),
-            'customTags' => Yii::t('handbook', 'Кастомные теги (вводить через запятую)'),
+            'selectedTags' => Yii::t('handbook', 'Выбранные теги')
         ];
     }
 
