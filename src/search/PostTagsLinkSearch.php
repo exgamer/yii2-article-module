@@ -31,7 +31,7 @@ class PostTagsLinkSearch extends PostCategory
         ];
     }
 
-    protected function extendQuery(ActiveQuery $query)
+    public function extendQuery(ActiveQuery $query)
     {
         $query->andFilterWhere([
             'entity_id' => $this->entity_id

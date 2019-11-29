@@ -42,7 +42,7 @@ class PostSearch extends Post
         ];
     }
 
-    protected function extendQuery(ActiveQuery $query)
+    public function extendQuery(ActiveQuery $query)
     {
         $query->andFilterWhere([
             static::tableName().'.id' => $this->id
@@ -68,7 +68,7 @@ class PostSearch extends Post
         };
     }
 
-    protected function extendDataProvider(ActiveDataProvider $dataProvider)
+    public function extendDataProvider(ActiveDataProvider $dataProvider)
     {
         $this->addSortByLocalizationAttribute($dataProvider, 'seo_name');
         $this->addSortByLocalizationAttribute($dataProvider, 'title');
