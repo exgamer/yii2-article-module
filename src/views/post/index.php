@@ -44,13 +44,6 @@ $this->params['breadcrumbs'][] = $this->title;
 //                'filter'=>Yii::$app->localeService->getAllList('locale', 'locale')
 //            ],
             'seo_name',
-            [
-                'attribute'=>'domain_id',
-                'filter'=> Yii::$app->domainService->catalog(),
-                'value'=>function($data) {
-                    return $data->getDomainName();
-                }
-            ],
 //            [
 //                'format' => ['image',['width'=>'100']],
 //                'value'=>function($data) {

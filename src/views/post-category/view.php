@@ -61,10 +61,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute'=>'status',
                 'value'=>$model->statusLabel(),
             ],
-            [
-                'attribute'=>'domain_id',
-                'value'=>$model->getDomainName(),
-            ],
             'created_at',
             'updated_at',
             [
