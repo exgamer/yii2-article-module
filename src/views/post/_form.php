@@ -49,13 +49,6 @@ use yii\widgets\Pjax;
 
     <?= $form->field($model, 'seo_keywords')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'domain_id')->dropDownList(
-        Yii::$app->domainService->catalog(),
-        [
-            'prompt' => Yii::t('backend', 'Выберите домен')
-        ]
-    );?>
-
     <?= $form->field($model, 'selectedTags')->widget(\kartik\select2\Select2::classname(), [
         'data' => Yii::$app->tagsService->catalog(),
         'options' => ['placeholder' => Yii::t('article', 'Выберите теги ...'),'multiple' => true],
