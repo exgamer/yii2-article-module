@@ -1,6 +1,7 @@
 <?php
 namespace concepture\yii2article\services;
 
+use yii\db\ActiveQuery;
 use concepture\yii2article\traits\ServicesTrait as ArticleServices;
 use concepture\yii2logic\forms\Model;
 use concepture\yii2logic\models\ActiveRecord;
