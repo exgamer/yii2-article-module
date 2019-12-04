@@ -49,7 +49,7 @@ $this->viewHelper()->pushPageHeader();
             'attribute'=>'category_id',
             'filter'=> Yii::$app->postCategoryService->catalog(),
             'value'=>function($data) {
-                return $data->getCategoryTitle();
+                return $data->getParentTitle();
             }
         ],
         [

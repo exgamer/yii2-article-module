@@ -90,7 +90,7 @@ $this->viewHelper()->pushPageHeader(['index'], $model::label(),'icon-list');
                 [
                     'attribute'=>'category_id',
                     'value'=>function($data) {
-                        return $data->getCategoryTitle();
+                        return $data->getParentTitle();
                     }
                 ],
                 'url',
