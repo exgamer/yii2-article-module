@@ -16,7 +16,7 @@ use concepture\yii2logic\enum\IsDeletedEnum;
     </div>
     <div class="col-lg-4 col-md-6 col-sm-12">
         <?= $form
-            ->field($model, 'category_id')
+            ->field($model, 'parent_id')
             ->dropDownList(Yii::$app->postCategoryService->catalog(), [
                 'class' => 'form-control custom-select',
                 'prompt' => ''
