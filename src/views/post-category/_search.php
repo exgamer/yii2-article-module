@@ -1,50 +1,44 @@
 <?php
 
-use yii\helpers\Html;
-use yii\widgets\ActiveForm;
-
-/* @var $this yii\web\View */
-/* @var $model backend\search\PostCategorySearch */
-/* @var $form yii\widgets\ActiveForm */
+use common\enum\MenuEnum;
+use concepture\yii2logic\enum\StatusEnum;
+use concepture\yii2logic\enum\IsDeletedEnum;
 ?>
-
-<div class="post-category-search">
-
-    <?php $form = ActiveForm::begin([
-        'action' => ['index'],
-        'method' => 'get',
-        'options' => [
-            'data-pjax' => 1
-        ],
-    ]); ?>
-
-    <?= $form->field($model, 'id') ?>
-
-    <?= $form->field($model, 'category_id') ?>
-
-    <?= $form->field($model, 'locale') ?>
-
-    <?= $form->field($model, 'seo_name') ?>
-
-    <?= $form->field($model, 'seo_title') ?>
-
-    <?php // echo $form->field($model, 'seo_description') ?>
-
-    <?php // echo $form->field($model, 'seo_keywords') ?>
-
-    <?php // echo $form->field($model, 'title') ?>
-
-    <?php // echo $form->field($model, 'status') ?>
-
-    <?php // echo $form->field($model, 'created_at') ?>
-
-    <?php // echo $form->field($model, 'updated_at') ?>
-
-    <div class="form-group">
-        <?= Html::submitButton(Yii::t('backend', 'Search'), ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton(Yii::t('backend', 'Reset'), ['class' => 'btn btn-outline-secondary']) ?>
+<div class="row">
+    <div class="col-lg-4 col-md-6 col-sm-12">
+        <?= $form->field($model,'id')->textInput();?>
     </div>
-
-    <?php ActiveForm::end(); ?>
-
+    <div class="col-lg-4 col-md-6 col-sm-12">
+        <?= $form->field($model,'title')->textInput();?>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12">
+        <?= $form->field($model,'seo_name')->textInput();?>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12">
+        <?= $form
+            ->field($model, 'category_id')
+            ->dropDownList(Yii::$app->postCategoryService->catalog(), [
+                'class' => 'form-control custom-select',
+                'prompt' => ''
+            ]);
+        ?>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12">
+        <?= $form
+            ->field($model, 'status')
+            ->dropDownList(StatusEnum::arrayList(), [
+                'class' => 'form-control custom-select',
+                'prompt' => ''
+            ]);
+        ?>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12">
+        <?= $form
+            ->field($model, 'is_deleted')
+            ->dropDownList(IsDeletedEnum::arrayList(), [
+                'class' => 'form-control custom-select',
+                'prompt' => ''
+            ]);
+        ?>
+    </div>
 </div>

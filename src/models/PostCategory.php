@@ -42,6 +42,24 @@ class PostCategory extends ActiveRecord
     public $seo_description;
     public $seo_keywords;
 
+    /**
+     * @see \concepture\yii2logic\models\ActiveRecord:label()
+     *
+     * @return string
+     */
+    public static function label()
+    {
+        return Yii::t('static', 'Категории постов');
+    }
+
+    /**
+     * @see \concepture\yii2logic\models\ActiveRecord:toString()
+     * @return string
+     */
+    public function toString()
+    {
+        return $this->title;
+    }
 
     /**
      * {@inheritdoc}
