@@ -14,6 +14,7 @@ use concepture\yii2user\models\traits\UserTrait;
 use concepture\yii2logic\models\traits\IsDeletedTrait;
 use concepture\yii2logic\models\traits\HasTreeTrait;
 use concepture\yii2logic\validators\MD5Validator;
+use concepture\yii2logic\validators\UniqueLocalizedValidator;
 
 /**
  * Class PostCategory
@@ -119,10 +120,19 @@ class PostCategory extends ActiveRecord
             ],
             [
                 [
-                    'seo_name',
-                    'url',
+                    'url'
                 ],
-                UniquePropertyValidator::class
+                UniqueLocalizedValidator::class,
+                'fields' => ['domain_id'],
+                'localizedFields' => ['url_md5_hash']
+            ],
+            [
+                [
+                    'seo_name'
+                ],
+                UniqueLocalizedValidator::class,
+                'fields' => ['domain_id'],
+                'localizedFields' => ['seo_name', 'locale']
             ],
             [
                 [
