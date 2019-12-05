@@ -2,12 +2,12 @@
 
 return [
     'postCategoryService' => [
-        'class' => '\concepture\yii2article\services\PostCategoryService'
+        'class' => 'concepture\yii2article\services\PostCategoryService'
     ],
     'postService' => [
-        'class' => '\concepture\yii2article\services\PostService'
+        'class' => 'concepture\yii2article\services\PostService'
     ],
     'postTagsLinkService' => [
-        'class' => '\concepture\yii2article\services\PostTagsLinkService'
+        'class' => 'concepture\yii2article\services\PostTagsLinkService'
     ],
 ];
