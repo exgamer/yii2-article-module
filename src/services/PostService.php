@@ -14,6 +14,7 @@ use concepture\yii2logic\db\LocalizedActiveQuery;
 use concepture\yii2logic\enum\IsDeletedEnum;
 use concepture\yii2handbook\services\traits\ModifySupportTrait as HandbookModifySupportTrait;
 use concepture\yii2handbook\services\traits\ReadSupportTrait as HandbookReadSupportTrait;
+use concepture\yii2user\services\traits\UserSupportTrait;
 
 /**
  * Class PostService
@@ -27,10 +28,11 @@ class PostService extends Service
     use LocalizedReadTrait;
     use HandbookModifySupportTrait;
     use HandbookReadSupportTrait;
+    use UserSupportTrait;
 
     protected function beforeCreate(Model $form)
     {
-        $form->user_id = Yii::$app->user->identity->id;
+        $this->setCurrentUser($form);
         $this->setCurrentDomain($form);
     }
 
