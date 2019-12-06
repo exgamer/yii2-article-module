@@ -15,6 +15,7 @@ use concepture\yii2logic\validators\MD5Validator;
 use concepture\yii2logic\models\traits\IsDeletedTrait;
 use concepture\yii2handbook\models\traits\TagsTrait;
 use concepture\yii2logic\validators\UniqueLocalizedValidator;
+use kamaelkz\yii2cdnuploader\traits\ModelTrait;
 
 /**
  * Class Post
@@ -31,7 +32,8 @@ class Post extends ActiveRecord
     use UserTrait;
     use IsDeletedTrait;
     use TagsTrait;
-
+    use ModelTrait;
+    
     public $locale;
     public $url;
     public $url_md5_hash;
