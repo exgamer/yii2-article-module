@@ -15,7 +15,7 @@ class m191005_101557_post_localization extends Migration
     public function up()
     {
         $this->addTable([
-            'id' => $this->bigPrimaryKey(),
+//            'id' => $this->bigPrimaryKey(),
             'entity_id' => $this->bigInteger()->notNull(),
             'locale' => $this->bigInteger()->notNull(),
             'seo_name' => $this->string(1024),
@@ -28,8 +28,9 @@ class m191005_101557_post_localization extends Migration
             'title' => $this->string(1024)->notNull(),
             'content' => $this->text()->notNull()
         ]);
+        $this->addPK(['entity_id', 'locale'], true);
         $this->addIndex(['entity_id']);
-        $this->addIndex(['entity_id', 'locale'], true);
+//        $this->addIndex(['entity_id', 'locale'], true);
         $this->addIndex(['locale']);
         $this->addIndex(['url']);
         $this->execute("ALTER TABLE post_localization
