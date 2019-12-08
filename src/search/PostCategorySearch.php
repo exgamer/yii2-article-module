@@ -49,7 +49,7 @@ class PostCategorySearch extends PostCategory
         $query->andFilterWhere([
             'status' => $this->status
         ]);
-        $query->andFilterWhere([
+        $query->andWhere([
             'parent_id' => $this->parent_id
         ]);
         $query->andFilterWhere([
