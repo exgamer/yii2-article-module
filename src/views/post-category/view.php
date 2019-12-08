@@ -92,7 +92,7 @@ $this->viewHelper()->pushPageHeader(['index'], $model::label(),'icon-list');
                 ],
                 'seo_name',
                 [
-                    'attribute'=>'category_id',
+                    'attribute'=>'parent_id',
                     'value'=>function($data) {
                         return $data->getParentTitle();
                     }

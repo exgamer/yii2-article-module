@@ -53,7 +53,7 @@ $this->viewHelper()->pushPageHeader(['create', 'parent_id' => $searchModel->pare
             }
         ],
         [
-            'attribute'=>'category_id',
+            'attribute'=>'parent_id',
             'filter'=> Yii::$app->postCategoryService->catalog(),
             'value'=>function($data) {
                 return $data->getParentTitle();
