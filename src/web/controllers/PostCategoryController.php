@@ -3,9 +3,9 @@
 namespace concepture\yii2article\web\controllers;
 
 use concepture\yii2user\enum\UserRoleEnum;
-use concepture\yii2logic\controllers\web\localized\Controller;
-use concepture\yii2logic\actions\web\localized\StatusChangeAction;
-use concepture\yii2logic\actions\web\localized\UndeleteAction;
+use concepture\yii2logic\controllers\web\localized\tree\Controller;
+use concepture\yii2logic\actions\web\localized\tree\StatusChangeAction;
+use concepture\yii2logic\actions\web\localized\tree\UndeleteAction;
 
 /**
  * Class PostCategoryController

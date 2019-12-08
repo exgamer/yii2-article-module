@@ -10,7 +10,7 @@ use yii\helpers\Url;
 
 $this->setTitle($searchModel::label());
 $this->pushBreadcrumbs($this->title);
-$this->viewHelper()->pushPageHeader();
+$this->viewHelper()->pushPageHeader(['create', 'parent_id' => $searchModel->parent_id]);
 ?>
 <?php Pjax::begin(); ?>
 
@@ -75,7 +75,7 @@ $this->viewHelper()->pushPageHeader();
                 'view'=> function ($url, $model) {
                     return Html::a(
                         '<i class="icon-file-eye2"></i>' . Yii::t('yii2admin', 'Просмотр'),
-                        ['view', 'id' => $model['id'], 'locale' => $model['locale']],
+                        ['view', 'id' => $model['id'], 'locale' => $model['locale'], 'parent_id' => $model['parent_id']],
                         [
                             'class' => 'dropdown-item',
                             'aria-label' => Yii::t('yii2admin', 'Просмотр'),
@@ -91,7 +91,7 @@ $this->viewHelper()->pushPageHeader();
 
                     return Html::a(
                         '<i class="icon-pencil6"></i>'. Yii::t('yii2admin', 'Редактировать'),
-                        ['update', 'id' => $model['id'], 'locale' => $model['locale']],
+                        ['update', 'id' => $model['id'], 'locale' => $model['locale'], 'parent_id' => $model['parent_id']],
                         [
                             'class' => 'dropdown-item',
                             'aria-label' => Yii::t('yii2admin', 'Редактировать'),
@@ -111,7 +111,7 @@ $this->viewHelper()->pushPageHeader();
 
                     return Html::a(
                         '<i class="icon-checkmark4"></i>'. Yii::t('yii2admin', 'Активировать'),
-                        ['status-change', 'id' => $model['id'], 'status' => StatusEnum::ACTIVE, 'locale' => $model['locale']],
+                        ['status-change', 'id' => $model['id'], 'status' => StatusEnum::ACTIVE, 'locale' => $model['locale'], 'parent_id' => $model['parent_id']],
                         [
                             'class' => 'admin-action dropdown-item',
                             'data-pjax-id' => 'list-pjax',
@@ -129,7 +129,7 @@ $this->viewHelper()->pushPageHeader();
                     }
                     return Html::a(
                         '<i class="icon-cross2"></i>'. Yii::t('yii2admin', 'Деактивировать'),
-                        ['status-change', 'id' => $model['id'], 'status' => StatusEnum::INACTIVE, 'locale' => $model['locale']],
+                        ['status-change', 'id' => $model['id'], 'status' => StatusEnum::INACTIVE, 'locale' => $model['locale'], 'parent_id' => $model['parent_id']],
                         [
                             'class' => 'admin-action dropdown-item',
                             'data-pjax-id' => 'list-pjax',
@@ -145,7 +145,7 @@ $this->viewHelper()->pushPageHeader();
 
                     return Html::a(
                         '<i class="icon-trash"></i>'. Yii::t('yii2admin', 'Удалить'),
-                        ['delete', 'id' => $model['id'], 'locale' => $model['locale']],
+                        ['delete', 'id' => $model['id'], 'locale' => $model['locale'], 'parent_id' => $model['parent_id']],
                         [
                             'class' => 'admin-action dropdown-item',
                             'data-pjax-id' => 'list-pjax',
