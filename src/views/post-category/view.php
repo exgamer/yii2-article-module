@@ -91,12 +91,12 @@ $this->viewHelper()->pushPageHeader(['index'], $model::label(),'icon-list');
                     }
                 ],
                 'seo_name',
-                [
-                    'attribute'=>'parent_id',
-                    'value'=>function($data) {
-                        return $data->getParentTitle();
-                    }
-                ],
+//                [
+//                    'attribute'=>'parent_id',
+//                    'value'=>function($data) {
+//                        return $data->getParentTitle();
+//                    }
+//                ],
                 'url',
                 'seo_h1',
                 'seo_title',
