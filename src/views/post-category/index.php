@@ -11,7 +11,7 @@ use kamaelkz\yii2admin\v1\themes\components\view\BreadcrumbsHelper;
 
 $this->setTitle($searchModel::label());
 
-$breadcrumbs = BreadcrumbsHelper::getClosurePath($searchModel, "caption", "parent_id");
+$breadcrumbs = BreadcrumbsHelper::getClosurePath($searchModel, "title", "parent_id");
 foreach ($breadcrumbs as $breadcrumb){
     $this->pushBreadcrumbs($breadcrumb);
 }
