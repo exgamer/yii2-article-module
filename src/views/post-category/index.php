@@ -7,9 +7,16 @@ use concepture\yii2handbook\converters\LocaleConverter;
 use concepture\yii2logic\enum\StatusEnum;
 use concepture\yii2logic\enum\IsDeletedEnum;
 use yii\helpers\Url;
+use kamaelkz\yii2admin\v1\themes\components\view\BreadcrumbsHelper;
 
 $this->setTitle($searchModel::label());
-$this->pushBreadcrumbs($this->title);
+
+$breadcrumbs = BreadcrumbsHelper::getClosurePath($searchModel, "caption", "parent_id");
+foreach ($breadcrumbs as $breadcrumb){
+    $this->pushBreadcrumbs($breadcrumb);
+}
+
+
 $this->viewHelper()->pushPageHeader(['create', 'parent_id' => $searchModel->parent_id]);
 ?>
 <?php Pjax::begin(); ?>
@@ -70,8 +77,20 @@ $this->viewHelper()->pushPageHeader(['create', 'parent_id' => $searchModel->pare
 
         [
             'class'=>'yii\grid\ActionColumn',
-            'template'=>'{view} {update} {activate} {deactivate} {delete}',
+            'template'=>'{childs} {view} {update} {activate} {deactivate} {delete}',
             'buttons'=>[
+                'childs'=> function ($url, $model) {
+                    return Html::a(
+                        '<i class="icon-tree5"></i>' . Yii::t('yii2admin', 'Подкатегории'),
+                        ['index', 'parent_id' => $model['id'], 'locale' => $model['locale']],
+                        [
+                            'class' => 'dropdown-item',
+                            'aria-label' => Yii::t('yii2admin', 'Подменю'),
+                            'title' => Yii::t('yii2admin', 'Подменю'),
+                            'data-pjax' => '0'
+                        ]
+                    );
+                },
                 'view'=> function ($url, $model) {
                     return Html::a(
                         '<i class="icon-file-eye2"></i>' . Yii::t('yii2admin', 'Просмотр'),

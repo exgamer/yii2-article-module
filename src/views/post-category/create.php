@@ -1,8 +1,13 @@
 <?php
+use kamaelkz\yii2admin\v1\themes\components\view\BreadcrumbsHelper;
 
 $this->setTitle(Yii::t('yii2admin', 'Новая запись'));
-$this->pushBreadcrumbs(['label' => $model::label(), 'url' => ['index']]);
-$this->pushBreadcrumbs($this->title);
+
+$breadcrumbs = BreadcrumbsHelper::getClosurePath($model, "caption", "parent_id", $this->getTitle());
+foreach ($breadcrumbs as $breadcrumb){
+    $this->pushBreadcrumbs($breadcrumb);
+}
+
 $this->viewHelper()->pushPageHeader(['index'], $model::label(),'icon-list');
 ?>
 

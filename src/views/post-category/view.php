@@ -5,10 +5,14 @@ use yii\widgets\DetailView;
 use concepture\yii2handbook\converters\LocaleConverter;
 use kamaelkz\yii2admin\v1\widgets\formelements\Pjax;
 use yii\helpers\Url;
+use kamaelkz\yii2admin\v1\themes\components\view\BreadcrumbsHelper;
 
 $this->setTitle(Yii::t('yii2admin', 'Просмотр'));
-$this->pushBreadcrumbs(['label' => $model::label(), 'url' => ['index']]);
-$this->pushBreadcrumbs($this->title);
+
+$breadcrumbs = BreadcrumbsHelper::getClosurePath($model, "caption", "parent_id", $this->getTitle());
+foreach ($breadcrumbs as $breadcrumb){
+    $this->pushBreadcrumbs($breadcrumb);
+}
 
 $this->viewHelper()->pushPageHeader();
 $this->viewHelper()->pushPageHeader(['update' ,'id' => $model->id], Yii::t('yii2admin','Редактирование'), 'icon-pencil6');
