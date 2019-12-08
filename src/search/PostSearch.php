@@ -62,10 +62,10 @@ class PostSearch extends Post
         $query->andFilterWhere([
             'is_deleted' => $this->is_deleted
         ]);
-        static::$search_by_locale_callable = function($q, $localizedAlias){
+        static::searchByLocalization( function($q, $localizedAlias){
             $q->andFilterWhere(['like', "{$localizedAlias}.seo_name", $this->seo_name]);
             $q->andFilterWhere(['like', "{$localizedAlias}.title", $this->title]);
-        };
+        });
     }
 
     public function extendDataProvider(ActiveDataProvider $dataProvider)
