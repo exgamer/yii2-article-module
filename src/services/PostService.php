@@ -10,7 +10,6 @@ use Yii;
 use concepture\yii2logic\services\traits\StatusTrait;
 use concepture\yii2logic\services\traits\LocalizedReadTrait;
 use concepture\yii2logic\enum\StatusEnum;
-use concepture\yii2logic\db\LocalizedActiveQuery;
 use concepture\yii2logic\enum\IsDeletedEnum;
 use concepture\yii2handbook\services\traits\ModifySupportTrait as HandbookModifySupportTrait;
 use concepture\yii2handbook\services\traits\ReadSupportTrait as HandbookReadSupportTrait;
@@ -67,7 +66,7 @@ class PostService extends Service
             $q->andWhere(["{$localizedAlias}.url_md5_hash" => $md5]);
         };
 
-        return $this->getOneByCondition(function(LocalizedActiveQuery $query) {
+        return $this->getOneByCondition(function(ActiveQuery $query) {
             $query->andWhere("status = :status", [':status' => StatusEnum::ACTIVE]);
             $query->andWhere("is_deleted = :is_deleted", [':is_deleted' => IsDeletedEnum::NOT_DELETED]);
         });
