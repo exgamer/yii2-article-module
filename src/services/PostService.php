@@ -60,6 +60,7 @@ class PostService extends Service
     public function getPostForCurrentUrl()
     {
         $current = Yii::$app->getRequest()->getPathInfo();
+        $current = trim($current, '/');
         $md5 = md5($current);
         $modelClass = $this->getRelatedModelClass();
         $modelClass::$search_by_locale_callable = function($q, $localizedAlias) use ($md5) {

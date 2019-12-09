@@ -33,7 +33,7 @@ class Post extends ActiveRecord
     use IsDeletedTrait;
     use TagsTrait;
     use ModelTrait;
-    
+
     public $locale;
     public $url;
     public $url_md5_hash;
