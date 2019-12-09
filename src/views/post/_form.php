@@ -61,7 +61,7 @@ use kamaelkz\yii2cdnuploader\widgets\CdnUploader;
                 <div class="col-lg-12 col-md-12 col-sm-12">
                     <?= $form
                         ->field($model, 'category_id')
-                        ->dropDownList(Yii::$app->postCategoryService->getDropDownList(), [
+                        ->dropDownList(Yii::$app->postCategoryService->catalog(), [
                             'class' => 'form-control custom-select',
                             'prompt' => Yii::t('yii2admin', 'Выберите категорию')
                         ]);
