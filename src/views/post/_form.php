@@ -54,23 +54,75 @@ use kamaelkz\yii2cdnuploader\widgets\CdnUploader;
                 </div>
             </div>
 
+<!--            ===========category select start====-->
 
 
-
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12">
-                    <?= $form
-                        ->field($model, 'category_id')
-                        ->dropDownList(Yii::$app->postCategoryService->catalog(), [
-                            'class' => 'form-control custom-select',
-                            'prompt' => Yii::t('yii2admin', 'Выберите категорию')
-                        ]);
-                    ?>
+            <?php if (empty($model->categoryParents)) :?>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <?= $form
+                            ->field($model, 'category_id')
+                            ->dropDownList(Yii::$app->postCategoryService->getDropDownList(), [
+                                'class' => 'form-control  form-control-uniform active-form-refresh-control',
+                                'prompt' => Yii::t('yii2admin', 'Выберите категорию')
+                            ]);
+                        ?>
+                    </div>
                 </div>
-            </div>
+            <?php endif;?>
+
+            <?php if (! empty($model->categoryParents)) :?>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="form-group">
+                            <?= Html::dropDownList('category_root', reset($model->categoryParents), Yii::$app->postCategoryService->getDropDownList(), [
+                                'class' => 'form-control  form-control-uniform active-form-refresh-control',
+                                'prompt' => Yii::t('yii2admin', 'Выберите категорию')
+                            ]);?>
+                            <div class="text-danger form-text"></div>
+                        </div>
+                    </div>
+                </div>
+                <?php
+                $count = count($model->categoryParents);
+                $i = 0;
+                ?>
+                <?php foreach ($model->categoryParents as $key => $parentId) : ?>
+                    <?php
+                    if ($count-1 == $i){
+                        continue;
+                    }
+                    ?>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <?= Html::dropDownList('category'.$parentId, $model->categoryParents[$key +1], Yii::$app->postCategoryService->getChildsDropDownList($parentId), [
+                                    'class' => 'form-control  form-control-uniform active-form-refresh-control',
+                                    'prompt' => Yii::t('yii2admin', 'Выберите категорию')
+                                ]);?>
+                                <div class="text-danger form-text"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <?php $i++; ?>
+                <? endforeach;?>
 
 
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <?= $form
+                            ->field($model, 'category_id')
+                            ->dropDownList(Yii::$app->postCategoryService->getChildsDropDownList(array_pop($model->categoryParents)), [
+                                'class' => 'form-control  form-control-uniform active-form-refresh-control',
+                                'prompt' => Yii::t('yii2admin', 'Выберите категорию')
+                            ]);
+                        ?>
+                    </div>
+                </div>
+            <?php endif;?>
 
+
+            <!--            ===========category select end====-->
 
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12">

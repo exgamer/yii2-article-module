@@ -34,6 +34,8 @@ class PostForm extends Form
      */
     public $selectedTags = [];
 
+    public $categoryParents = [];
+
     /**
      * @see Form::formRules()
      */
@@ -51,6 +53,11 @@ class PostForm extends Form
             ],
             [
                 'selectedTags',
+                'each',
+                'rule' => ['integer']
+            ],
+            [
+                'categoryParents',
                 'each',
                 'rule' => ['integer']
             ]
@@ -72,5 +79,19 @@ class PostForm extends Form
         if ($model) {
             $this->selectedTags = $model->getSelectedTagsIds();
         }
+    }
+
+
+    public function beforeValidate()
+    {
+        if ($this->category_id){
+            $this->categoryParents = array_keys(Yii::$app->postCategoryService->getParentsByTree($this->category_id));
+            if( Yii::$app->postCategoryService->hasChilds($this->category_id)) {
+                $this->categoryParents[] = $this->category_id;
+                $this->category_id = null;
+            }
+        }
+
+        return parent::beforeValidate();
     }
 }
