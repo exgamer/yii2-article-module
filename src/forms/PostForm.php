@@ -68,8 +68,10 @@ class PostForm extends Form
     /**
      * @see Form::customizeForm()
      */
-    public function customizeForm(ActiveRecord $model)
+    public function customizeForm(ActiveRecord $model = null)
     {
-        $this->selectedTags = $model->getSelectedTagsIds();
+        if ($model) {
+            $this->selectedTags = $model->getSelectedTagsIds();
+        }
     }
 }
