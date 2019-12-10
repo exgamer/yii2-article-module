@@ -57,7 +57,8 @@ $this->viewHelper()->pushPageHeader();
             'value'=>function($data) {
 
                 return implode(",", $data->locales());
-            }
+            },
+            'visible' => Yii::$app->localeService->catalogCount() > 1,
         ],
         'created_at',
         [
