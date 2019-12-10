@@ -77,6 +77,7 @@ class PostForm extends BaseForm
     public function customizeForm(ActiveRecord $model = null)
     {
         if ($model) {
+            $this->categoryParents = array_keys(Yii::$app->postCategoryService->getParentsByTree($this->category_id));
             $this->selectedTags = $model->getSelectedTagsIds();
         }
     }
