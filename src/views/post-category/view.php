@@ -91,7 +91,6 @@ $this->viewHelper()->pushPageHeader(['index'], $model::label(),'icon-list');
                     }
                 ],
                 'seo_name',
-                'url',
                 'seo_h1',
                 'seo_title',
                 'seo_description',

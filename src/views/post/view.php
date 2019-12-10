@@ -93,7 +93,6 @@ $this->viewHelper()->pushPageHeader(['index'], $model::label(),'icon-list');
                         return $data->getCategoryTitle();
                     }
                 ],
-                'url',
                 'seo_h1',
                 'seo_title',
                 'seo_description',

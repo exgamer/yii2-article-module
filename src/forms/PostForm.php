@@ -16,8 +16,7 @@ class PostForm extends Form
     public $category_id;
     public $domain_id;
     public $locale = "ru";
-    public $url;
-    public $url_md5_hash;
+    public $seo_name_md5_hash;
     public $title;
     public $image;
     public $content;

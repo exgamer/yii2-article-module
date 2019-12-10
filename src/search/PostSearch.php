@@ -34,7 +34,6 @@ class PostSearch extends Post
                 [
                     'title',
                     'seo_name',
-                    'url',
                     'tags'
                 ],
                 'safe'
@@ -55,9 +54,6 @@ class PostSearch extends Post
         ]);
         $query->andFilterWhere([
             'category_id' => $this->category_id
-        ]);
-        $query->andFilterWhere([
-            'url' => $this->url
         ]);
         $query->andFilterWhere([
             'is_deleted' => $this->is_deleted

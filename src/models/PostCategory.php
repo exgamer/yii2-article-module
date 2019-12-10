@@ -33,8 +33,7 @@ class PostCategory extends ActiveRecord
     use UserTrait;
 
     public $locale;
-    public $url;
-    public $url_md5_hash;
+    public $seo_name_md5_hash;
     public $title;
     public $content;
     public $seo_name;
@@ -97,19 +96,11 @@ class PostCategory extends ActiveRecord
                     'title',
                     'seo_name',
                     'seo_h1',
-                    'url',
-                    'url_md5_hash',
+                    'seo_name_md5_hash',
                     'image',
                 ],
                 'string',
                 'max'=>1024
-            ],
-            [
-                [
-                    'url_md5_hash',
-                ],
-                MD5Validator::className(),
-                'source' => 'url'
             ],
             [
                 [
@@ -120,11 +111,10 @@ class PostCategory extends ActiveRecord
             ],
             [
                 [
-                    'url'
+                    'seo_name_md5_hash',
                 ],
-                UniqueLocalizedValidator::class,
-                'fields' => ['domain_id'],
-                'localizedFields' => ['url_md5_hash']
+                MD5Validator::className(),
+                'source' => 'seo_name'
             ],
             [
                 [
@@ -156,8 +146,6 @@ class PostCategory extends ActiveRecord
             'status' => Yii::t('article','Статус'),
             'image' => Yii::t('article','Изображение'),
             'locale' => Yii::t('article','Язык'),
-            'url' => Yii::t('article','url страницы'),
-            'url_md5_hash' => Yii::t('article','md5 url страницы'),
             'title' => Yii::t('article','Название'),
             'content' => Yii::t('article','Контент'),
             'seo_name' => Yii::t('article','SEO название'),

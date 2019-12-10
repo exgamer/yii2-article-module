@@ -135,9 +135,6 @@ use kamaelkz\yii2cdnuploader\widgets\CdnUploader;
         <div class="card-body">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12">
-                    <?= $form->field($model, 'url')->textInput(['maxlength' => true]) ?>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-12">
                     <?= $form->field($model, 'seo_name')->textInput(['maxlength' => true]) ?>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12">

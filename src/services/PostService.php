@@ -64,7 +64,7 @@ class PostService extends Service
         $md5 = md5($current);
         $modelClass = $this->getRelatedModelClass();
         $modelClass::$search_by_locale_callable = function($q, $localizedAlias) use ($md5) {
-            $q->andWhere(["{$localizedAlias}.url_md5_hash" => $md5]);
+            $q->andWhere(["{$localizedAlias}.seo_name_md5_hash" => $md5]);
         };
 
         return $this->getOneByCondition(function(ActiveQuery $query) {
