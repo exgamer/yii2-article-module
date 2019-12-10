@@ -68,6 +68,7 @@ use kamaelkz\yii2cdnuploader\widgets\CdnUploader;
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12">
                     <div class="form-group">
+                        <?= Html::label(Yii::t('yii2admin', 'Основная категория'))?>
                         <?= Html::dropDownList('category_root', reset($model->categoryParents), Yii::$app->postCategoryService->getDropDownList(), [
                             'class' => 'form-control  form-control-uniform active-form-refresh-control',
                             'prompt' => Yii::t('yii2admin', 'Выберите категорию')
