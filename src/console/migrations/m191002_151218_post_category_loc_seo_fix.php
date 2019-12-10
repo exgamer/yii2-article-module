@@ -12,7 +12,7 @@ class m191002_151218_post_category_loc_seo_fix extends Migration
         return 'post_category_localization';
     }
 
-    public function up()
+    public function safeUp()
     {
         $this->removeColumn("url");
         $this->removeColumn("url_md5_hash");

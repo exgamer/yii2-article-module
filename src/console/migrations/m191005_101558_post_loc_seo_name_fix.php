@@ -12,7 +12,7 @@ class m191005_101558_post_loc_seo_name_fix extends Migration
         return 'post_localization';
     }
 
-    public function up()
+    public function safeUp()
     {
         $this->removeColumn("url");
         $this->removeColumn("url_md5_hash");
