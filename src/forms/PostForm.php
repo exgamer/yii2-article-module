@@ -2,7 +2,7 @@
 namespace concepture\yii2article\forms;
 
 use yii\db\ActiveRecord;
-use concepture\yii2logic\forms\Form;
+use kamaelkz\yii2admin\v1\forms\BaseForm;
 use Yii;
 
 /**
@@ -10,7 +10,7 @@ use Yii;
  * @package concepture\yii2article\forms
  * @author Olzhas Kulzhambekov <exgamer@live.ru>
  */
-class PostForm extends Form
+class PostForm extends BaseForm
 {
     public $user_id;
     public $category_id;
