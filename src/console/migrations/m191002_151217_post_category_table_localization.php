@@ -26,7 +26,7 @@ class m191002_151217_post_category_table_localization extends Migration
             'seo_description' => $this->string(175),
             'seo_keywords' => $this->string(175),
             'title' => $this->string(1024)->notNull(),
-            'content' => $this->text()->notNull()
+            'content' => $this->text()
         ]);
         $this->addPK(['entity_id', 'locale'], true);
         $this->addIndex(['entity_id']);
