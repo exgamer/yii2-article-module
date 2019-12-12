@@ -147,7 +147,7 @@ use kamaelkz\yii2cdnuploader\widgets\CdnUploader;
         </div>
 
         <div class="row">
-            <div class="col-lg-4 col-md-6 col-sm-12">
+            <div class="col-lg-6 col-md-6 col-sm-12">
                 <?= $form
                     ->field($model, 'image')
                     ->widget(CdnUploader::class, [
@@ -176,7 +176,7 @@ use kamaelkz\yii2cdnuploader\widgets\CdnUploader;
                     ->hint(false);
                 ?>
             </div>
-            <div class="col-lg-4 col-md-6 col-sm-12">
+            <div class="col-lg-6 col-md-6 col-sm-12">
                 <?= $form
                     ->field($model, 'image_anons')
                     ->widget(CdnUploader::class, [
