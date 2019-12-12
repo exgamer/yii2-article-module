@@ -18,7 +18,9 @@ class PostForm extends BaseForm
     public $locale = "ru";
     public $seo_name_md5_hash;
     public $title;
+    public $anons;
     public $image;
+    public $image_anons;
     public $content;
     public $seo_name;
     public $seo_h1;
