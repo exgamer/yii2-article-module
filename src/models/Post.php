@@ -176,12 +176,12 @@ class Post extends ActiveRecord
         return parent::beforeDelete();
     }
 
-    public function afterFind()
-    {
-        $this->setLocalizations();
-
-        return parent::afterFind();
-    }
+//    public function afterFind()
+//    {
+//        $this->setLocalizations();
+//
+//        return parent::afterFind();
+//    }
 
     public static function getLocaleConverterClass()
     {

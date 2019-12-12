@@ -58,10 +58,8 @@ class PostCategorySearch extends PostCategory
         $query->andFilterWhere([
             'is_deleted' => $this->is_deleted
         ]);
-        static::searchByLocalization( function($q, $localizedAlias){
-            $q->andFilterWhere(['like', "{$localizedAlias}.seo_name", $this->seo_name]);
-            $q->andFilterWhere(['like', "{$localizedAlias}.title", $this->title]);
-        });
+        $query->andFilterWhere(['like', static::localizationAlias() . ".seo_name", $this->seo_name]);
+        $query->andFilterWhere(['like', static::localizationAlias() . ".title", $this->title]);
     }
 
     public function extendDataProvider(ActiveDataProvider $dataProvider)
