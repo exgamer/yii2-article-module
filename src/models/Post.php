@@ -37,6 +37,7 @@ class Post extends ActiveRecord
     public $locale;
     public $seo_name_md5_hash;
     public $title;
+    public $anons;
     public $content;
     public $seo_name;
     public $seo_h1;
@@ -101,6 +102,7 @@ class Post extends ActiveRecord
                     'seo_h1',
                     'seo_name_md5_hash',
                     'image',
+                    'image_anons',
                 ],
                 'string',
                 'max'=>1024
@@ -149,7 +151,9 @@ class Post extends ActiveRecord
             'status' => Yii::t('article','Статус'),
             'locale' => Yii::t('article','Язык'),
             'image' => Yii::t('article','Изображение'),
+            'image_anons' => Yii::t('article','Изображение для анонса'),
             'title' => Yii::t('article','Название'),
+            'anons' => Yii::t('article','Описание анонса'),
             'content' => Yii::t('article','Контент'),
             'seo_name' => Yii::t('article','SEO имя'),
             'seo_h1' => Yii::t('article','H1'),

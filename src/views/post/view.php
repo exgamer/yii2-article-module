@@ -79,6 +79,7 @@ $this->viewHelper()->pushPageHeader(['index'], $model::label(),'icon-list');
             'attributes' => [
                 'id',
                 'title',
+                'anons',
                 [
                     'attribute'=>'Версии',
                     'value'=>function($model) {
