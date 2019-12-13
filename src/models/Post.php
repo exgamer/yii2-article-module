@@ -180,13 +180,6 @@ class Post extends ActiveRecord
         return parent::beforeDelete();
     }
 
-//    public function afterFind()
-//    {
-//        $this->setLocalizations();
-//
-//        return parent::afterFind();
-//    }
-
     public static function getLocaleConverterClass()
     {
         return LocaleConverter::class;
@@ -194,7 +187,7 @@ class Post extends ActiveRecord
 
     public function getCategory()
     {
-        return $this->hasOne(PostCategory::className(), ['id' => 'category_id']);
+        return $this->hasOne(PostCategory::class, ['id' => 'category_id']);
     }
 
     public function getCategoryTitle()
