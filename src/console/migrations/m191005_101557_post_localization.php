@@ -30,7 +30,6 @@ class m191005_101557_post_localization extends Migration
         ]);
         $this->addPK(['entity_id', 'locale'], true);
         $this->addIndex(['entity_id']);
-//        $this->addIndex(['entity_id', 'locale'], true);
         $this->addIndex(['locale']);
         $this->addIndex(['url']);
         $this->execute("ALTER TABLE post_localization
