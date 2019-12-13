@@ -111,14 +111,14 @@ class Post extends ActiveRecord
                 [
                     'seo_name',
                 ],
-                TranslitValidator::className(),
+                TranslitValidator::class,
                 'source' => 'title'
             ],
             [
                 [
                     'seo_name_md5_hash',
                 ],
-                MD5Validator::className(),
+                MD5Validator::class,
                 'source' => 'seo_name'
             ],
             [
@@ -162,7 +162,7 @@ class Post extends ActiveRecord
             'seo_keywords' => Yii::t('article','keywords'),
             'created_at' => Yii::t('article','Дата создания'),
             'updated_at' => Yii::t('article','Дата обновления'),
-            'is_deleted' => Yii::t('banner','Удален'),
+            'is_deleted' => Yii::t('article','Удален'),
         ];
     }
 
