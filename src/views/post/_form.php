@@ -181,7 +181,7 @@ use kamaelkz\yii2cdnuploader\widgets\CdnUploader;
                     ->field($model, 'image_anons')
                     ->widget(CdnUploader::class, [
                         'model' => $model,
-                        'attribute' => 'image',
+                        'attribute' => 'image_anons',
                         'strategy' => StrategiesEnum::BY_REQUEST,
                         'resizeBigger' => false,
 //                                    'width' => 313,
