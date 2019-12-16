@@ -6,6 +6,8 @@ use concepture\yii2user\enum\UserRoleEnum;
 use concepture\yii2logic\controllers\web\localized\Controller;
 use concepture\yii2logic\actions\web\localized\StatusChangeAction;
 use concepture\yii2logic\actions\web\localized\UndeleteAction;
+use kamaelkz\yii2cdnuploader\actions\web\ImageDeleteAction;
+use kamaelkz\yii2cdnuploader\actions\web\ImageUploadAction;
 
 /**
  * Class PostController
@@ -18,7 +20,7 @@ class PostController extends Controller
     {
         return [
             [
-                'actions' => ['index', 'view','create', 'update', 'delete', 'undelete', 'status-change'],
+                'actions' => ['index', 'view','create', 'update', 'delete', 'undelete', 'status-change', 'image-upload', 'image-delete'],
                 'allow' => true,
                 'roles' => [UserRoleEnum::ADMIN],
             ]
@@ -33,6 +35,8 @@ class PostController extends Controller
         return array_merge($actions,[
             'status-change' => StatusChangeAction::class,
             'undelete' => UndeleteAction::class,
+            'upload' => ImageUploadAction::class,
+            'image-delete' => ImageDeleteAction::class,
         ]);
     }
 }
