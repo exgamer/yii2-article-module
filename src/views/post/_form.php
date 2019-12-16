@@ -152,6 +152,8 @@ use kamaelkz\yii2cdnuploader\widgets\CdnUploader;
                     ->field($model, 'image')
                     ->widget(CdnUploader::class, [
                         'model' => $model,
+//                        'modelId' => isset($originModel) ? $originModel->id : null,
+//                        'url' => 'image-upload',
                         'attribute' => 'image',
                         'strategy' => StrategiesEnum::BY_REQUEST,
                         'resizeBigger' => false,
