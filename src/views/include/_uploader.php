@@ -6,7 +6,7 @@ use kamaelkz\yii2admin\v1\modules\uikit\enum\UiikitEnum;
 use kamaelkz\yii2cdnuploader\enum\StrategiesEnum;
 ?>
 
-<?php if (isset($local) && $local === true):?>
+<?php if (isset(Yii::$app->params['concepture']['uploader']['type']) && Yii::$app->params['concepture']['uploader']['type'] === 'local'):?>
     <?= $form
         ->field($model, $attribute)
         ->widget(Uploader::class, [

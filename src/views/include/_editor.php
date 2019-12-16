@@ -4,7 +4,7 @@ use mihaildev\ckeditor\CKEditor;
 
 ?>
 
-<?php if (isset($ckeditor) && $ckeditor === true):?>
+<?php if (isset(Yii::$app->params['concepture']['editor']['type']) && Yii::$app->params['concepture']['editor']['type'] === 'cke'):?>
 
 <?= $form->field($model, $attribute)->widget(CKEditor::className(),[
     'editorOptions' => [
