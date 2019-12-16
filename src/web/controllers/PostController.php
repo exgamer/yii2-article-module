@@ -35,7 +35,7 @@ class PostController extends Controller
         return array_merge($actions,[
             'status-change' => StatusChangeAction::class,
             'undelete' => UndeleteAction::class,
-            'upload' => ImageUploadAction::class,
+            'image-upload' => ImageUploadAction::class,
             'image-delete' => ImageDeleteAction::class,
         ]);
     }
