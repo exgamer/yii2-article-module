@@ -71,6 +71,7 @@ use kamaelkz\yii2cdnuploader\widgets\CdnUploader;
         <div class="row">
             <div class="col-lg-4 col-md-6 col-sm-12">
                 <?= $this->render('/include/_uploader.php', [
+                    'form' => $form,
                     'model' => $model,
                     'attribute' => 'image',
                     'originModel' => $originModel
