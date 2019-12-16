@@ -1,6 +1,9 @@
 <?php
 use kamaelkz\yii2cdnuploader\widgets\CdnUploader;
 use kamaelkz\yii2cdnuploader\widgets\Uploader;
+use concepture\yii2handbook\enum\TargetAttributeEnum;
+use kamaelkz\yii2admin\v1\modules\uikit\enum\UiikitEnum;
+use kamaelkz\yii2cdnuploader\enum\StrategiesEnum;
 ?>
 
 <?php if (isset($local) && $local === true):?>
