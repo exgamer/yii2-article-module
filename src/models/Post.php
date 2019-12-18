@@ -99,6 +99,7 @@ class Post extends ActiveRecord
                 [
                     'title',
                     'seo_name',
+                    'anons',
                     'seo_h1',
                     'seo_name_md5_hash',
                     'image',
