@@ -21,6 +21,7 @@ class PostForm extends BaseForm
     public $anons;
     public $image;
     public $image_anons;
+    public $image_anons_big;
     public $content;
     public $seo_name;
     public $seo_h1;

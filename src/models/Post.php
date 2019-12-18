@@ -104,6 +104,7 @@ class Post extends ActiveRecord
                     'seo_name_md5_hash',
                     'image',
                     'image_anons',
+                    'image_anons_big',
                 ],
                 'string',
                 'max'=>1024
@@ -153,6 +154,7 @@ class Post extends ActiveRecord
             'locale' => Yii::t('article','Язык'),
             'image' => Yii::t('article','Изображение'),
             'image_anons' => Yii::t('article','Изображение для анонса'),
+            'image_anons_big' => Yii::t('article','Изображение для анонса (большое)'),
             'title' => Yii::t('article','Название'),
             'anons' => Yii::t('article','Описание анонса'),
             'content' => Yii::t('article','Контент'),
