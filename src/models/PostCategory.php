@@ -15,6 +15,7 @@ use concepture\yii2logic\models\traits\IsDeletedTrait;
 use concepture\yii2logic\models\traits\HasTreeTrait;
 use concepture\yii2logic\validators\MD5Validator;
 use concepture\yii2logic\validators\UniqueLocalizedValidator;
+use kamaelkz\yii2cdnuploader\traits\ModelTrait;
 
 /**
  * Class PostCategory
@@ -31,6 +32,7 @@ class PostCategory extends ActiveRecord
     use IsDeletedTrait;
     use DomainTrait;
     use UserTrait;
+    use ModelTrait;
 
     public $locale;
     public $seo_name_md5_hash;
@@ -98,6 +100,7 @@ class PostCategory extends ActiveRecord
                     'seo_h1',
                     'seo_name_md5_hash',
                     'image',
+                    'image_anons',
                 ],
                 'string',
                 'max'=>1024
@@ -145,6 +148,7 @@ class PostCategory extends ActiveRecord
             'parent_id' => Yii::t('comment','Родитель'),
             'status' => Yii::t('article','Статус'),
             'image' => Yii::t('article','Изображение'),
+            'image_anons' => Yii::t('article','Изображение для анонса'),
             'locale' => Yii::t('article','Язык'),
             'title' => Yii::t('article','Название'),
             'content' => Yii::t('article','Контент'),
