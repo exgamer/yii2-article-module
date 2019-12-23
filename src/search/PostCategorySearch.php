@@ -14,6 +14,7 @@ use yii\data\ActiveDataProvider;
  */
 class PostCategorySearch extends PostCategory
 {
+    public $parentWhereFunction = 'andWhere';
 
     /**
      * {@inheritdoc}
@@ -49,7 +50,8 @@ class PostCategorySearch extends PostCategory
         $query->andFilterWhere([
             'status' => $this->status
         ]);
-        $query->andWhere([
+        $fName = $this->getParentWhereFunction();
+        $query->{$fName}([
             'parent_id' => $this->parent_id
         ]);
         $query->andFilterWhere([
@@ -76,5 +78,15 @@ class PostCategorySearch extends PostCategory
     public static function getListSearchAttribute()
     {
         return 'title';
+    }
+
+    public function getParentWhereFunction()
+    {
+        return $this->parentWhereFunction;
+    }
+
+    public function setParentWhereFunction($name)
+    {
+        $this->parentWhereFunction = $name;
     }
 }
