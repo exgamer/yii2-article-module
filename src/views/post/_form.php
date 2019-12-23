@@ -131,7 +131,7 @@ use kamaelkz\yii2cdnuploader\widgets\CdnUploader;
                     'form' => $form,
                     'model' => $model,
                     'attribute' => 'content',
-                    'originModel' => $originModel
+                    'originModel' => isset($originModel) ? $originModel : null
                 ]) ?>
             </div>
         </div>
@@ -142,7 +142,7 @@ use kamaelkz\yii2cdnuploader\widgets\CdnUploader;
                     'form' => $form,
                     'model' => $model,
                     'attribute' => 'image',
-                    'originModel' => $originModel
+                    'originModel' => isset($originModel) ? $originModel : null
                 ]) ?>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12">
@@ -150,7 +150,7 @@ use kamaelkz\yii2cdnuploader\widgets\CdnUploader;
                     'form' => $form,
                     'model' => $model,
                     'attribute' => 'image_anons_big',
-                    'originModel' => $originModel
+                    'originModel' => isset($originModel) ? $originModel : null
                 ]) ?>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12">
@@ -158,7 +158,7 @@ use kamaelkz\yii2cdnuploader\widgets\CdnUploader;
                     'form' => $form,
                     'model' => $model,
                     'attribute' => 'image_anons',
-                    'originModel' => $originModel
+                    'originModel' => isset($originModel) ? $originModel : null
                 ]) ?>
             </div>
         </div>
