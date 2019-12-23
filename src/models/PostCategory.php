@@ -154,6 +154,7 @@ class PostCategory extends ActiveRecord
             'image_anons' => Yii::t('article','Изображение для анонса'),
             'locale' => Yii::t('article','Язык'),
             'title' => Yii::t('article','Название'),
+            'anons' => Yii::t('article','Описание анонса'),
             'content' => Yii::t('article','Контент'),
             'seo_name' => Yii::t('article','SEO название'),
             'seo_h1' => Yii::t('article','SEO H1'),
