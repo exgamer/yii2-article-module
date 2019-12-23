@@ -201,4 +201,13 @@ class PostCategory extends ActiveRecord
 
         return null;
     }
+
+    public function getParentSeoName()
+    {
+        if (isset($this->parent)){
+            return $this->parent->seo_name;
+        }
+
+        return null;
+    }
 }
