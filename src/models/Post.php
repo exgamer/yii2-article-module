@@ -201,4 +201,13 @@ class Post extends ActiveRecord
 
         return null;
     }
+
+    public function getCategorySeoName()
+    {
+        if (isset($this->category)){
+            return $this->category->seo_name;
+        }
+
+        return null;
+    }
 }
