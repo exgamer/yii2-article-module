@@ -19,6 +19,7 @@ class PostCategoryForm extends Form
     public $locale = "ru";
     public $seo_name_md5_hash;
     public $image;
+    public $image_anons;
     public $title;
     public $content;
     public $seo_name;
