@@ -50,6 +50,7 @@ class PostService extends Service
     protected function afterModelSave(Model $form , ActiveRecord $model, $is_new_record)
     {
         $this->postTagsLinkService()->link($model->id, $form->selectedTags);
+        $this->postCategoryService()->updatePostCount($form->category_id);
     }
 
     /**

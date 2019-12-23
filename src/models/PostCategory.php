@@ -83,7 +83,8 @@ class PostCategory extends ActiveRecord
                     'user_id',
                     'domain_id',
                     'parent_id',
-                    'locale'
+                    'locale',
+                    'post_count',
                 ],
                 'integer'
             ],
@@ -160,6 +161,7 @@ class PostCategory extends ActiveRecord
             'created_at' => Yii::t('article','Дата создания'),
             'updated_at' => Yii::t('article','Дата обновления'),
             'is_deleted' => Yii::t('article','Удален'),
+            'post_count' => Yii::t('article','Количество постов'),
         ];
     }
 
