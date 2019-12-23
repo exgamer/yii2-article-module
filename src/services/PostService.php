@@ -47,6 +47,15 @@ class PostService extends Service
         $this->applyDomain($query);
     }
 
+    protected function beforeModelSave(Model $form, ActiveRecord $model, $is_new_record)
+    {
+        $oldData = $this->getOldData();
+        $oldStatus = $oldData['status'];
+        if (($is_new_record || ($oldStatus != $model->status)) && $model->status == StatusEnum::ACTIVE){
+            $model->published_at = date('Y-m-d H:i:s');
+        }
+    }
+
     protected function afterModelSave(Model $form , ActiveRecord $model, $is_new_record)
     {
         $this->postTagsLinkService()->link($model->id, $form->selectedTags);
@@ -65,9 +74,6 @@ class PostService extends Service
         $md5 = md5($current);
         $modelClass = $this->getRelatedModelClass();
         $localizedAlias = $modelClass::localizationAlias();
-//        $modelClass::$search_by_locale_callable = function($q, $localizedAlias) use ($md5) {
-//            $q->andWhere(["{$localizedAlias}.seo_name_md5_hash" => $md5]);
-//        };
 
         return $this->getOneByCondition(function(ActiveQuery $query) use ($md5, $localizedAlias){
             $query->andWhere(["{$localizedAlias}.seo_name_md5_hash" => $md5]);
