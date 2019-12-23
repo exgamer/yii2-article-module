@@ -47,6 +47,13 @@ class PostService extends Service
         $this->applyDomain($query);
     }
 
+    protected function beforeStatusChange(ActiveRecord $model, $status)
+    {
+        if ($status != $model->status && $status == StatusEnum::ACTIVE){
+            $model->published_at = date('Y-m-d H:i:s');
+        }
+    }
+
     protected function beforeModelSave(Model $form, ActiveRecord $model, $is_new_record)
     {
         $oldData = $this->getOldData();
