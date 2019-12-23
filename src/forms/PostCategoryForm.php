@@ -21,6 +21,7 @@ class PostCategoryForm extends Form
     public $image;
     public $image_anons;
     public $title;
+    public $anons;
     public $content;
     public $seo_name;
     public $seo_h1;

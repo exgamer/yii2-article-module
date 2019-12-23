@@ -37,6 +37,7 @@ class PostCategory extends ActiveRecord
     public $locale;
     public $seo_name_md5_hash;
     public $title;
+    public $anons;
     public $content;
     public $seo_name;
     public $seo_h1;
@@ -97,6 +98,7 @@ class PostCategory extends ActiveRecord
             [
                 [
                     'title',
+                    'anons',
                     'seo_name',
                     'seo_h1',
                     'seo_name_md5_hash',
