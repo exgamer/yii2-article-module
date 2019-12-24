@@ -32,9 +32,15 @@ class m191005_101557_post_localization extends Migration
         $this->addIndex(['entity_id']);
         $this->addIndex(['locale']);
         $this->addIndex(['url']);
-        $this->execute("ALTER TABLE post_localization
-            ADD INDEX spl_url_md5_hash_index
+        if ($this->isMysql()) {
+            $this->execute("ALTER TABLE post_localization
+            ADD INDEX pl_url_md5_hash_index
             USING HASH (url_md5_hash);");
+        }
+        if ($this->isPostgres()) {
+            $this->execute("CREATE INDEX pl_url_md5_hash_index 
+            ON post_localization USING HASH (url_md5_hash);;");
+        }
         $this->addForeign('entity_id', 'post','id');
         $this->addForeign('locale', 'locale','id');
     }
