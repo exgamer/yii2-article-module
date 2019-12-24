@@ -166,6 +166,7 @@ class Post extends ActiveRecord
             'created_at' => Yii::t('article','Дата создания'),
             'updated_at' => Yii::t('article','Дата обновления'),
             'is_deleted' => Yii::t('article','Удален'),
+            'views' => Yii::t('article','Просмотры'),
         ];
     }
 
