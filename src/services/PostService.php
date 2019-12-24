@@ -1,6 +1,7 @@
 <?php
 namespace concepture\yii2article\services;
 
+use concepture\yii2logic\services\traits\ViewsTrait;
 use yii\db\ActiveQuery;
 use concepture\yii2article\traits\ServicesTrait as ArticleServices;
 use concepture\yii2logic\forms\Model;
@@ -28,6 +29,7 @@ class PostService extends Service
     use HandbookModifySupportTrait;
     use HandbookReadSupportTrait;
     use UserSupportTrait;
+    use ViewsTrait;
 
     protected function beforeCreate(Model $form)
     {
