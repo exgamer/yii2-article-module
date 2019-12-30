@@ -15,7 +15,7 @@ class PostForm extends BaseForm
     public $user_id;
     public $category_id;
     public $domain_id;
-    public $locale = "ru";
+    public $locale;
     public $seo_name_md5_hash;
     public $title;
     public $anons;

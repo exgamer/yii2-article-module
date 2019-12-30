@@ -16,7 +16,7 @@ class PostCategoryForm extends Form
     public $user_id;
     public $domain_id;
     public $parent_id;
-    public $locale = "ru";
+    public $locale;
     public $seo_name_md5_hash;
     public $image;
     public $image_anons;
