@@ -174,6 +174,7 @@ class Post extends ActiveRecord
             'created_at' => Yii::t('article','Дата создания'),
             'updated_at' => Yii::t('article','Дата обновления'),
             'is_deleted' => Yii::t('article','Удален'),
+            'views' => Yii::t('article','Просмотры'),
         ];
     }
 
@@ -205,6 +206,15 @@ class Post extends ActiveRecord
     {
         if (isset($this->category)){
             return $this->category->title;
+        }
+
+        return null;
+    }
+
+    public function getCategorySeoName()
+    {
+        if (isset($this->category)){
+            return $this->category->seo_name;
         }
 
         return null;

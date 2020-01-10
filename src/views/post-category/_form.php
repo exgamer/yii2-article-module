@@ -46,25 +46,37 @@ use kamaelkz\yii2cdnuploader\widgets\CdnUploader;
                 <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
             </div>
         </div>
-
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <?= $form->field($model, 'anons')->textarea();?>
+            </div>
+        </div>
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <?= $this->render('/include/_editor.php', [
                     'form' => $form,
                     'model' => $model,
                     'attribute' => 'content',
-                    'originModel' => $originModel
+                    'originModel' => isset($originModel) ? $originModel : null
                 ]) ?>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-lg-4 col-md-6 col-sm-12">
+            <div class="col-lg-6 col-md-6 col-sm-12">
                 <?= $this->render('/include/_uploader.php', [
                     'form' => $form,
                     'model' => $model,
                     'attribute' => 'image',
-                    'originModel' => $originModel
+                    'originModel' => isset($originModel) ? $originModel : null
+                ]) ?>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <?= $this->render('/include/_uploader.php', [
+                    'form' => $form,
+                    'model' => $model,
+                    'attribute' => 'image_anons',
+                    'originModel' => isset($originModel) ? $originModel : null
                 ]) ?>
             </div>
         </div>

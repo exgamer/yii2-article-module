@@ -33,9 +33,15 @@ class m191002_151217_post_category_table_localization extends Migration
 //        $this->addIndex(['entity_id', 'locale'], true);
         $this->addIndex(['locale']);
         $this->addIndex(['url']);
-        $this->execute("ALTER TABLE post_category_localization
-            ADD INDEX spl_url_md5_hash_index
+        if ($this->isMysql()) {
+            $this->execute("ALTER TABLE post_category_localization
+            ADD INDEX pc_url_md5_hash_index
             USING HASH (url_md5_hash);");
+        }
+        if ($this->isPostgres()) {
+            $this->execute("CREATE INDEX pc_url_md5_hash_index 
+            ON post_category_localization USING HASH (url_md5_hash);;");
+        }
         $this->addForeign('entity_id', 'post_category','id');
         $this->addForeign('locale', 'locale','id');
     }

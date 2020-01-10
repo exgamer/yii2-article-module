@@ -16,6 +16,7 @@ use concepture\yii2logic\models\traits\IsDeletedTrait;
 use concepture\yii2logic\models\traits\HasTreeTrait;
 use concepture\yii2logic\validators\MD5Validator;
 use concepture\yii2logic\validators\UniqueLocalizedValidator;
+use kamaelkz\yii2cdnuploader\traits\ModelTrait;
 
 /**
  * Class PostCategory
@@ -32,10 +33,12 @@ class PostCategory extends ActiveRecord
     use IsDeletedTrait;
     use DomainTrait;
     use UserTrait;
+    use ModelTrait;
 
     public $locale;
     public $seo_name_md5_hash;
     public $title;
+    public $anons;
     public $content;
     public $seo_name;
     public $seo_h1;
@@ -82,7 +85,8 @@ class PostCategory extends ActiveRecord
                     'user_id',
                     'domain_id',
                     'parent_id',
-                    'locale'
+                    'locale',
+                    'post_count',
                 ],
                 'integer'
             ],
@@ -95,10 +99,12 @@ class PostCategory extends ActiveRecord
             [
                 [
                     'title',
+                    'anons',
                     'seo_name',
                     'seo_h1',
                     'seo_name_md5_hash',
                     'image',
+                    'image_anons',
                 ],
                 'string',
                 'max'=>1024
@@ -153,8 +159,10 @@ class PostCategory extends ActiveRecord
             'parent_id' => Yii::t('comment','Родитель'),
             'status' => Yii::t('article','Статус'),
             'image' => Yii::t('article','Изображение'),
+            'image_anons' => Yii::t('article','Изображение для анонса'),
             'locale' => Yii::t('article','Язык'),
             'title' => Yii::t('article','Название'),
+            'anons' => Yii::t('article','Описание анонса'),
             'content' => Yii::t('article','Контент'),
             'seo_name' => Yii::t('article','SEO название'),
             'seo_h1' => Yii::t('article','SEO H1'),
@@ -164,6 +172,7 @@ class PostCategory extends ActiveRecord
             'created_at' => Yii::t('article','Дата создания'),
             'updated_at' => Yii::t('article','Дата обновления'),
             'is_deleted' => Yii::t('article','Удален'),
+            'post_count' => Yii::t('article','Количество постов'),
         ];
     }
 
@@ -183,13 +192,6 @@ class PostCategory extends ActiveRecord
        return parent::beforeDelete();
     }
 
-//    public function afterFind()
-//    {
-//        $this->setLocalizations();
-//
-//       return parent::afterFind();
-//    }
-
     public static function getLocaleConverterClass()
     {
         return LocaleConverter::class;
@@ -199,6 +201,15 @@ class PostCategory extends ActiveRecord
     {
         if (isset($this->parent)){
             return $this->parent->title;
+        }
+
+        return null;
+    }
+
+    public function getParentSeoName()
+    {
+        if (isset($this->parent)){
+            return $this->parent->seo_name;
         }
 
         return null;

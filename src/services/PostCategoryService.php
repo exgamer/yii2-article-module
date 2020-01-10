@@ -1,6 +1,10 @@
 <?php
 namespace concepture\yii2article\services;
 
+use concepture\yii2article\models\PostCategory;
+use concepture\yii2article\traits\ServicesTrait;
+use concepture\yii2logic\enum\IsDeletedEnum;
+use concepture\yii2logic\enum\StatusEnum;
 use yii\db\ActiveQuery;
 use concepture\yii2logic\forms\Model;
 use concepture\yii2logic\services\Service;
@@ -19,6 +23,7 @@ use concepture\yii2user\services\traits\UserSupportTrait;
  */
 class PostCategoryService extends Service
 {
+    use ServicesTrait;
     use TreeReadTrait;
     use StatusTrait;
     use LocalizedReadTrait;
@@ -42,5 +47,18 @@ class PostCategoryService extends Service
     protected function extendQuery(ActiveQuery $query)
     {
         $this->applyDomain($query);
+    }
+
+    /**
+     * Обновляет количество постов у категории
+     *
+     * @param $id
+     */
+    public function updatePostCount($id)
+    {
+        $postCount = $this->postService()->getCount(['category_id' => $id]);
+        PostCategory::updateAll(['post_count' => $postCount],
+            'id = :id AND status = :status AND is_deleted = :is_deleted',
+            ['id' => $id, 'status' => StatusEnum::ACTIVE, 'is_deleted' => IsDeletedEnum::NOT_DELETED]);
     }
 }
