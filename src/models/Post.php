@@ -2,6 +2,7 @@
 namespace concepture\yii2article\models;
 
 use concepture\yii2handbook\converters\LocaleConverter;
+use concepture\yii2logic\validators\SeoNameValidator;
 use concepture\yii2user\models\User;
 use concepture\yii2logic\validators\UniquePropertyValidator;
 use Yii;
@@ -113,8 +114,15 @@ class Post extends ActiveRecord
                 [
                     'seo_name',
                 ],
+                SeoNameValidator::class
+            ],
+            [
+                [
+                    'seo_name',
+                ],
                 TranslitValidator::class,
-                'source' => 'title'
+                'source' => 'seo_h1',
+                'secondary_source' => 'title',
             ],
             [
                 [

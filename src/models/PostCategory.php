@@ -1,6 +1,7 @@
 <?php
 namespace concepture\yii2article\models;
 
+use concepture\yii2logic\validators\SeoNameValidator;
 use concepture\yii2user\models\User;
 use concepture\yii2logic\validators\UniquePropertyValidator;
 use Yii;
@@ -106,8 +107,15 @@ class PostCategory extends ActiveRecord
                 [
                     'seo_name',
                 ],
-                TranslitValidator::className(),
-                'source' => 'title'
+                SeoNameValidator::class
+            ],
+            [
+                [
+                    'seo_name',
+                ],
+                TranslitValidator::class,
+                'source' => 'seo_h1',
+                'secondary_source' => 'title',
             ],
             [
                 [
