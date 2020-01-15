@@ -102,9 +102,7 @@ class Post extends ActiveRecord
                 [
                     [
                         'title',
-                        'seo_name',
                         'anons',
-                        'seo_h1',
                         'seo_name_md5_hash',
                         'image',
                         'image_anons',
@@ -112,14 +110,6 @@ class Post extends ActiveRecord
                     ],
                     'string',
                     'max'=>1024
-                ],
-                [
-                    [
-                        'seo_name',
-                    ],
-                    TranslitValidator::class,
-                    'source' => 'seo_h1',
-                    'secondary_source' => 'title',
                 ],
                 [
                     [

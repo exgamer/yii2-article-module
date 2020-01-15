@@ -102,8 +102,6 @@ class PostCategory extends ActiveRecord
                 [
                     'title',
                     'anons',
-                    'seo_name',
-                    'seo_h1',
                     'seo_name_md5_hash',
                     'image',
                     'image_anons',
