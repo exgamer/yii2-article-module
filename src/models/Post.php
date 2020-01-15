@@ -45,7 +45,6 @@ class Post extends ActiveRecord
     public $seo_title;
     public $seo_description;
     public $seo_keywords;
-    public $sort;
 
 
     /**
