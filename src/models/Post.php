@@ -45,6 +45,7 @@ class Post extends ActiveRecord
     public $seo_title;
     public $seo_description;
     public $seo_keywords;
+    public $sort;
 
 
     /**
@@ -86,7 +87,8 @@ class Post extends ActiveRecord
                     'user_id',
                     'domain_id',
                     'category_id',
-                    'locale'
+                    'locale',
+                    'sort',
                 ],
                 'integer'
             ],
@@ -175,6 +177,7 @@ class Post extends ActiveRecord
             'updated_at' => Yii::t('article','Дата обновления'),
             'is_deleted' => Yii::t('article','Удален'),
             'views' => Yii::t('article','Просмотры'),
+            'sort' => Yii::t('article','Сортировка'),
         ];
     }
 

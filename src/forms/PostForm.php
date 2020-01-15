@@ -28,6 +28,7 @@ class PostForm extends BaseForm
     public $seo_title;
     public $seo_description;
     public $seo_keywords;
+    public $sort;
     public $status = 0;
 
     /**
