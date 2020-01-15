@@ -176,7 +176,7 @@ class Post extends ActiveRecord
             'updated_at' => Yii::t('article','Дата обновления'),
             'is_deleted' => Yii::t('article','Удален'),
             'views' => Yii::t('article','Просмотры'),
-            'sort' => Yii::t('article','Сортировка'),
+            'sort' => Yii::t('article','Вес'),
         ];
     }
 
