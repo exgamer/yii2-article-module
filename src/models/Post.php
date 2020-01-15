@@ -2,6 +2,8 @@
 namespace concepture\yii2article\models;
 
 use concepture\yii2handbook\converters\LocaleConverter;
+use concepture\yii2logic\models\traits\SeoTrait;
+use concepture\yii2logic\traits\SeoPropertyTrait;
 use concepture\yii2logic\validators\SeoNameValidator;
 use concepture\yii2user\models\User;
 use concepture\yii2logic\validators\UniquePropertyValidator;
@@ -17,6 +19,7 @@ use concepture\yii2logic\models\traits\IsDeletedTrait;
 use concepture\yii2handbook\models\traits\TagsTrait;
 use concepture\yii2logic\validators\UniqueLocalizedValidator;
 use kamaelkz\yii2cdnuploader\traits\ModelTrait;
+use yii\helpers\ArrayHelper;
 
 /**
  * Class Post
@@ -34,17 +37,14 @@ class Post extends ActiveRecord
     use IsDeletedTrait;
     use TagsTrait;
     use ModelTrait;
+    use SeoPropertyTrait;
+    use SeoTrait;
 
     public $locale;
     public $seo_name_md5_hash;
     public $title;
     public $anons;
     public $content;
-    public $seo_name;
-    public $seo_h1;
-    public $seo_title;
-    public $seo_description;
-    public $seo_keywords;
 
 
     /**
@@ -79,82 +79,73 @@ class Post extends ActiveRecord
      */
     public function rules()
     {
-        return [
-            [
+         return ArrayHelper::merge(
+             $this->seoRules(),
+             [
                 [
-                    'status',
-                    'user_id',
-                    'domain_id',
-                    'category_id',
-                    'locale',
-                    'sort',
+                    [
+                        'status',
+                        'user_id',
+                        'domain_id',
+                        'category_id',
+                        'locale',
+                        'sort',
+                    ],
+                    'integer'
                 ],
-                'integer'
-            ],
-            [
                 [
-                    'content'
+                    [
+                        'content'
+                    ],
+                    'string'
                 ],
-                'string'
-            ],
-            [
                 [
-                    'title',
-                    'seo_name',
-                    'anons',
-                    'seo_h1',
-                    'seo_name_md5_hash',
-                    'image',
-                    'image_anons',
-                    'image_anons_big',
+                    [
+                        'title',
+                        'seo_name',
+                        'anons',
+                        'seo_h1',
+                        'seo_name_md5_hash',
+                        'image',
+                        'image_anons',
+                        'image_anons_big',
+                    ],
+                    'string',
+                    'max'=>1024
                 ],
-                'string',
-                'max'=>1024
-            ],
-            [
                 [
-                    'seo_name',
+                    [
+                        'seo_name',
+                    ],
+                    TranslitValidator::class,
+                    'source' => 'seo_h1',
+                    'secondary_source' => 'title',
                 ],
-                SeoNameValidator::class
-            ],
-            [
                 [
-                    'seo_name',
+                    [
+                        'seo_name_md5_hash',
+                    ],
+                    MD5Validator::class,
+                    'source' => 'seo_name'
                 ],
-                TranslitValidator::class,
-                'source' => 'seo_h1',
-                'secondary_source' => 'title',
-            ],
-            [
                 [
-                    'seo_name_md5_hash',
-                ],
-                MD5Validator::class,
-                'source' => 'seo_name'
-            ],
-            [
-                [
-                    'seo_name'
-                ],
-                UniqueLocalizedValidator::class,
-                'fields' => ['domain_id'],
-                'localizedFields' => ['seo_name', 'locale']
-            ],
-            [
-                [
-                    'seo_title',
-                    'seo_description',
-                    'seo_keywords',
-                ],
-                'string',
-                'max'=>175
+                    [
+                        'seo_name'
+                    ],
+                    UniqueLocalizedValidator::class,
+                    'fields' => ['domain_id'],
+                    'localizedFields' => ['seo_name', 'locale']
+                ]
             ]
-        ];
+        );
+
     }
 
     public function attributeLabels()
     {
-        return [
+        return ArrayHelper::merge(
+            $this->seoAttributeLabels(),
+            [
             'id' => Yii::t('article','#'),
             'user_id' => Yii::t('article','Пользователь'),
             'domain_id' => Yii::t('article','Домен'),
@@ -167,17 +158,13 @@ class Post extends ActiveRecord
             'title' => Yii::t('article','Название'),
             'anons' => Yii::t('article','Описание анонса'),
             'content' => Yii::t('article','Контент'),
-            'seo_name' => Yii::t('article','SEO имя'),
-            'seo_h1' => Yii::t('article','H1'),
-            'seo_title' => Yii::t('article','title'),
-            'seo_description' => Yii::t('article','description'),
-            'seo_keywords' => Yii::t('article','keywords'),
             'created_at' => Yii::t('article','Дата создания'),
             'updated_at' => Yii::t('article','Дата обновления'),
             'is_deleted' => Yii::t('article','Удален'),
             'views' => Yii::t('article','Просмотры'),
             'sort' => Yii::t('article','Вес'),
-        ];
+            ]
+        );
     }
 
     public function afterSave($insert, $changedAttributes)

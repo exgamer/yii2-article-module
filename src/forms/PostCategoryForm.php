@@ -4,6 +4,7 @@ namespace concepture\yii2article\forms;
 
 use concepture\yii2logic\forms\Form;
 use concepture\yii2logic\enum\StatusEnum;
+use concepture\yii2logic\traits\SeoPropertyTrait;
 use Yii;
 
 /**
@@ -13,6 +14,8 @@ use Yii;
  */
 class PostCategoryForm extends Form
 {
+    use SeoPropertyTrait;
+
     public $user_id;
     public $domain_id;
     public $parent_id;
@@ -23,11 +26,6 @@ class PostCategoryForm extends Form
     public $title;
     public $anons;
     public $content;
-    public $seo_name;
-    public $seo_h1;
-    public $seo_title;
-    public $seo_description;
-    public $seo_keywords;
     public $status = StatusEnum::INACTIVE;
 
     /**

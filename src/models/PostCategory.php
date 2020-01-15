@@ -17,6 +17,9 @@ use concepture\yii2logic\models\traits\HasTreeTrait;
 use concepture\yii2logic\validators\MD5Validator;
 use concepture\yii2logic\validators\UniqueLocalizedValidator;
 use kamaelkz\yii2cdnuploader\traits\ModelTrait;
+use concepture\yii2logic\models\traits\SeoTrait;
+use concepture\yii2logic\traits\SeoPropertyTrait;
+use yii\helpers\ArrayHelper;
 
 /**
  * Class PostCategory
@@ -34,17 +37,14 @@ class PostCategory extends ActiveRecord
     use DomainTrait;
     use UserTrait;
     use ModelTrait;
+    use SeoPropertyTrait;
+    use SeoTrait;
 
     public $locale;
     public $seo_name_md5_hash;
     public $title;
     public $anons;
     public $content;
-    public $seo_name;
-    public $seo_h1;
-    public $seo_title;
-    public $seo_description;
-    public $seo_keywords;
 
     /**
      * @see \concepture\yii2logic\models\ActiveRecord:label()
@@ -78,7 +78,9 @@ class PostCategory extends ActiveRecord
      */
     public function rules()
     {
-        return [
+        return ArrayHelper::merge(
+            $this->seoRules(),
+            [
             [
                 [
                     'status',
@@ -111,20 +113,6 @@ class PostCategory extends ActiveRecord
             ],
             [
                 [
-                    'seo_name',
-                ],
-                SeoNameValidator::class
-            ],
-            [
-                [
-                    'seo_name',
-                ],
-                TranslitValidator::class,
-                'source' => 'seo_h1',
-                'secondary_source' => 'title',
-            ],
-            [
-                [
                     'seo_name_md5_hash',
                 ],
                 MD5Validator::className(),
@@ -137,22 +125,16 @@ class PostCategory extends ActiveRecord
                 UniqueLocalizedValidator::class,
                 'fields' => ['domain_id'],
                 'localizedFields' => ['seo_name', 'locale']
-            ],
-            [
-                [
-                    'seo_title',
-                    'seo_description',
-                    'seo_keywords',
-                ],
-                'string',
-                'max'=>175
             ]
-        ];
+            ]
+        );
     }
 
     public function attributeLabels()
     {
-        return [
+        return ArrayHelper::merge(
+            $this->seoAttributeLabels(),
+            [
             'id' => Yii::t('article','#'),
             'user_id' => Yii::t('article','Пользователь'),
             'domain_id' => Yii::t('article','Домен'),
@@ -164,16 +146,12 @@ class PostCategory extends ActiveRecord
             'title' => Yii::t('article','Название'),
             'anons' => Yii::t('article','Описание анонса'),
             'content' => Yii::t('article','Контент'),
-            'seo_name' => Yii::t('article','SEO название'),
-            'seo_h1' => Yii::t('article','SEO H1'),
-            'seo_title' => Yii::t('article','SEO title'),
-            'seo_description' => Yii::t('article','SEO description'),
-            'seo_keywords' => Yii::t('article','SEO keywords'),
             'created_at' => Yii::t('article','Дата создания'),
             'updated_at' => Yii::t('article','Дата обновления'),
             'is_deleted' => Yii::t('article','Удален'),
             'post_count' => Yii::t('article','Количество постов'),
-        ];
+            ]
+        );
     }
 
     public function afterSave($insert, $changedAttributes)

@@ -3,6 +3,7 @@ namespace concepture\yii2article\forms;
 
 use yii\db\ActiveRecord;
 use kamaelkz\yii2admin\v1\forms\BaseForm;
+use concepture\yii2logic\traits\SeoPropertyTrait;
 use Yii;
 
 /**
@@ -12,6 +13,8 @@ use Yii;
  */
 class PostForm extends BaseForm
 {
+    use SeoPropertyTrait;
+
     public $user_id;
     public $category_id;
     public $domain_id;
@@ -23,11 +26,6 @@ class PostForm extends BaseForm
     public $image_anons;
     public $image_anons_big;
     public $content;
-    public $seo_name;
-    public $seo_h1;
-    public $seo_title;
-    public $seo_description;
-    public $seo_keywords;
     public $sort;
     public $status = 0;
 
