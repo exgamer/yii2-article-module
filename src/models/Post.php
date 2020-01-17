@@ -37,14 +37,14 @@ class Post extends ActiveRecord
     use IsDeletedTrait;
     use TagsTrait;
     use ModelTrait;
-    use SeoPropertyTrait;
+//    use SeoPropertyTrait;
     use SeoTrait;
 
-    public $locale;
-    public $seo_name_md5_hash;
-    public $title;
-    public $anons;
-    public $content;
+//    public $locale;
+//    public $seo_name_md5_hash;
+//    public $title;
+//    public $anons;
+//    public $content;
 
 
     /**

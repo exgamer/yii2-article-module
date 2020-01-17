@@ -37,14 +37,14 @@ class PostCategory extends ActiveRecord
     use DomainTrait;
     use UserTrait;
     use ModelTrait;
-    use SeoPropertyTrait;
+//    use SeoPropertyTrait;
     use SeoTrait;
 
-    public $locale;
-    public $seo_name_md5_hash;
-    public $title;
-    public $anons;
-    public $content;
+//    public $locale;
+//    public $seo_name_md5_hash;
+//    public $title;
+//    public $anons;
+//    public $content;
 
     /**
      * @see \concepture\yii2logic\models\ActiveRecord:label()
