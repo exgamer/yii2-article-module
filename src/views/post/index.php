@@ -1,5 +1,6 @@
 <?php
 
+use concepture\yii2handbook\actions\PositionSortIndexAction;
 use yii\helpers\Html;
 use yii\grid\GridView;
 use kamaelkz\yii2admin\v1\widgets\formelements\Pjax;
@@ -10,6 +11,11 @@ use yii\helpers\Url;
 
 $this->setTitle($searchModel::label());
 $this->pushBreadcrumbs($this->title);
+$this->viewHelper()->pushPageHeader(
+    [PositionSortIndexAction::actionName()],
+    Yii::t('yii2admin', 'Сортировка'),
+    'icon-sort'
+);
 $this->viewHelper()->pushPageHeader();
 ?>
 <?php Pjax::begin(); ?>
