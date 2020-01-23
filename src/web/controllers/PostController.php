@@ -54,7 +54,7 @@ class PostController extends Controller
             'undelete' => UndeleteAction::class,
             'image-upload' => ImageUploadAction::class,
             'image-delete' => ImageDeleteAction::class,
-            PositionSortIndexAction::y() => [
+            PositionSortIndexAction::actionName() => [
                 'class' => PositionSortIndexAction::class,
                 'entityColumns' => [
                     'id',
