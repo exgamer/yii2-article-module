@@ -2,6 +2,7 @@
 
 namespace concepture\yii2article\web\controllers;
 
+use kamaelkz\yii2admin\v1\controllers\traits\ControllerTrait;
 use concepture\yii2handbook\actions\PositionSortIndexAction;
 use concepture\yii2handbook\services\EntityTypePositionSortService;
 use concepture\yii2user\enum\UserRoleEnum;
@@ -20,6 +21,8 @@ use kamaelkz\yii2cdnuploader\actions\web\ImageUploadAction;
  */
 class PostController extends Controller
 {
+    use ControllerTrait;
+    
     protected function getAccessRules()
     {
         return [
