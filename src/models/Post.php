@@ -125,7 +125,13 @@ class Post extends ActiveRecord
                     UniqueLocalizedValidator::class,
                     'fields' => ['domain_id'],
                     'localizedFields' => ['seo_name', 'locale']
-                ]
+                ],
+                 [
+                     [
+                         'published_at'
+                     ],
+                     'safe'
+                 ],
             ]
         );
 
@@ -136,23 +142,24 @@ class Post extends ActiveRecord
         return ArrayHelper::merge(
             $this->seoAttributeLabels(),
             [
-            'id' => Yii::t('article','#'),
-            'user_id' => Yii::t('article','Пользователь'),
-            'domain_id' => Yii::t('article','Домен'),
-            'category_id' => Yii::t('article','Категория'),
-            'status' => Yii::t('article','Статус'),
-            'locale' => Yii::t('article','Язык'),
-            'image' => Yii::t('article','Изображение'),
-            'image_anons' => Yii::t('article','Изображение для анонса'),
-            'image_anons_big' => Yii::t('article','Изображение для анонса (большое)'),
-            'title' => Yii::t('article','Название'),
-            'anons' => Yii::t('article','Описание анонса'),
-            'content' => Yii::t('article','Контент'),
-            'created_at' => Yii::t('article','Дата создания'),
-            'updated_at' => Yii::t('article','Дата обновления'),
-            'is_deleted' => Yii::t('article','Удален'),
-            'views' => Yii::t('article','Просмотры'),
-            'sort' => Yii::t('article','Вес'),
+                'id' => Yii::t('article','#'),
+                'user_id' => Yii::t('article','Пользователь'),
+                'domain_id' => Yii::t('article','Домен'),
+                'category_id' => Yii::t('article','Категория'),
+                'status' => Yii::t('article','Статус'),
+                'locale' => Yii::t('article','Язык'),
+                'image' => Yii::t('article','Изображение'),
+                'image_anons' => Yii::t('article','Изображение для анонса'),
+                'image_anons_big' => Yii::t('article','Изображение для анонса (большое)'),
+                'title' => Yii::t('article','Название'),
+                'anons' => Yii::t('article','Описание анонса'),
+                'content' => Yii::t('article','Контент'),
+                'created_at' => Yii::t('article','Дата создания'),
+                'updated_at' => Yii::t('article','Дата обновления'),
+                'published_at' => Yii::t('article','Дата публикации'),
+                'is_deleted' => Yii::t('article','Удален'),
+                'views' => Yii::t('article','Просмотры'),
+                'sort' => Yii::t('article','Вес'),
             ]
         );
     }

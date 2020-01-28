@@ -28,6 +28,7 @@ class PostForm extends BaseForm
     public $content;
     public $sort;
     public $status = 0;
+    public $published_at;
 
     /**
      * Выбранные теги
@@ -62,14 +63,20 @@ class PostForm extends BaseForm
                 'categoryParents',
                 'each',
                 'rule' => ['integer']
-            ]
+            ],
+            [
+                [
+                    'published_at'
+                ],
+                'safe'
+            ],
         ];
     }
 
     public function formAttributeLabels()
     {
         return [
-            'selectedTags' => Yii::t('handbook', 'Выбранные теги')
+            'selectedTags' => Yii::t('handbook', 'Выбранные теги'),
         ];
     }
 

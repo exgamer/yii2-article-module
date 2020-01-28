@@ -22,7 +22,7 @@ use kamaelkz\yii2cdnuploader\actions\web\ImageUploadAction;
 class PostController extends Controller
 {
     use ControllerTrait;
-    
+
     protected function getAccessRules()
     {
         return [
