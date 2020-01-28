@@ -51,18 +51,18 @@ class PostService extends Service
 
     protected function beforeStatusChange(ActiveRecord $model, $status)
     {
-        if ($status != $model->status && $status == StatusEnum::ACTIVE){
-            $model->published_at = date('Y-m-d H:i:s');
-        }
+//        if ($status != $model->status && $status == StatusEnum::ACTIVE){
+//            $model->published_at = date('Y-m-d H:i:s');
+//        }
     }
 
     protected function beforeModelSave(Model $form, ActiveRecord $model, $is_new_record)
     {
-        $oldData = $this->getOldData();
-        $oldStatus = isset($oldData['status']) ? $oldData['status'] : $model->status;
-        if (($is_new_record || ($oldStatus != $model->status)) && $model->status == StatusEnum::ACTIVE){
-            $model->published_at = date('Y-m-d H:i:s');
-        }
+//        $oldData = $this->getOldData();
+//        $oldStatus = isset($oldData['status']) ? $oldData['status'] : $model->status;
+//        if (($is_new_record || ($oldStatus != $model->status)) && $model->status == StatusEnum::ACTIVE){
+//            $model->published_at = date('Y-m-d H:i:s');
+//        }
     }
 
     protected function afterModelSave(Model $form , ActiveRecord $model, $is_new_record)
