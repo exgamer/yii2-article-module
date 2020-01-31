@@ -35,6 +35,7 @@ class PostCategoryService extends Service
     {
         $this->setCurrentUser($form);
         $this->setCurrentDomain($form);
+        parent::beforeCreate($form);
     }
 
     /**
