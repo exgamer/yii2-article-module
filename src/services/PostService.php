@@ -50,6 +50,16 @@ class PostService extends Service
         $this->applyDomain($query);
     }
 
+
+    protected function beforeModelSave(Model $form, ActiveRecord $model, $is_new_record)
+    {
+        $oldData = $this->getOldData();
+        $oldStatus = $oldData['status'];
+        if (($is_new_record || ($oldStatus != $model->status)) && $model->status == StatusEnum::ACTIVE &&  ! $model->published_at){
+            $model->published_at = date('Y-m-d H:i:s');
+        }
+    }
+
     protected function afterModelSave(Model $form , ActiveRecord $model, $is_new_record)
     {
         $this->postTagsLinkService()->link($model->id, $form->selectedTags);
