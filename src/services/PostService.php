@@ -54,8 +54,12 @@ class PostService extends Service
     protected function beforeModelSave(Model $form, ActiveRecord $model, $is_new_record)
     {
         $oldData = $this->getOldData();
-        $oldStatus = $oldData['status'];
-        if (($is_new_record || ($oldStatus != $model->status)) && $model->status == StatusEnum::ACTIVE &&  ! $model->published_at){
+        $oldStatus = $model->status;
+        if (isset($oldData['status'])) {
+            $oldStatus = $oldData['status'];
+        }
+        
+        if (($is_new_record || ($oldStatus != $model->status)) && $model->status == StatusEnum::ACTIVE && !$model->published_at) {
             $model->published_at = date('Y-m-d H:i:s');
         }
     }
