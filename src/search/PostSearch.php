@@ -32,7 +32,7 @@ class PostSearch extends Post
             ],
             [
                 [
-                    'title',
+                    'header',
                     'seo_name',
                     'tags'
                 ],
@@ -59,12 +59,12 @@ class PostSearch extends Post
             'is_deleted' => $this->is_deleted
         ]);
         $query->andFilterWhere(['like', static::localizationAlias() . ".seo_name", $this->seo_name]);
-        $query->andFilterWhere(['like', static::localizationAlias() . ".title", $this->title]);
+        $query->andFilterWhere(['like', static::localizationAlias() . ".header", $this->header]);
     }
 
     public function extendDataProvider(ActiveDataProvider $dataProvider)
     {
         $this->addSortByLocalizationAttribute($dataProvider, 'seo_name');
-        $this->addSortByLocalizationAttribute($dataProvider, 'title');
+        $this->addSortByLocalizationAttribute($dataProvider, 'header');
     }
 }

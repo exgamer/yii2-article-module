@@ -8,6 +8,8 @@ use concepture\yii2handbook\enum\TargetAttributeEnum;
 use kamaelkz\yii2admin\v1\modules\uikit\enum\UiikitEnum;
 use kamaelkz\yii2cdnuploader\enum\StrategiesEnum;
 use kamaelkz\yii2cdnuploader\widgets\CdnUploader;
+use kamaelkz\yii2admin\v1\widgets\formelements\pickers\DatePicker;
+use kamaelkz\yii2admin\v1\widgets\formelements\pickers\TimePicker;
 
 $saveRedirectButton = Html::submitButton(
     '<b><i class="icon-list"></i></b>' . Yii::t('yii2admin', 'Сохранить и перейти к списку'),
@@ -58,7 +60,7 @@ $saveButton = Html::submitButton(
             </legend>
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12">
-                    <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
+                    <?= $form->field($model, 'header')->textInput(['maxlength' => true]) ?>
                 </div>
             </div>
             <div class="row">
@@ -177,30 +179,62 @@ $saveButton = Html::submitButton(
                     ]) ?>
                 </div>
             </div>
-
-            <legend class="font-weight-semibold text-uppercase font-size-sm">
-                <?= Yii::t('yii2admin', 'SEO настройки') ;?>
-            </legend>
-            <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-12">
-                    <?= $form->field($model, 'seo_name')->textInput(['maxlength' => true, 'disabled' => isset($originModel) ? true : false]) ?>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-12">
-                    <?= $form->field($model, 'seo_h1')->textInput(['maxlength' => true]) ?>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-12">
-                    <?= $form->field($model, 'seo_title')->textInput(['maxlength' => true]) ?>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-12">
-                    <?= $form->field($model, 'seo_description')->textInput(['maxlength' => true]) ?>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-12">
-                    <?= $form->field($model, 'seo_keywords')->textInput(['maxlength' => true]) ?>
-                </div>
-            </div>
+            <?=
+                $this->render('@concepture/yii2handbook/views/include/_seo_attributes', [
+                    'form' => $form,
+                    'model' => $model,
+                    'originModel' => $originModel ?? null
+                ]);
+            ?>
             <legend class="font-weight-semibold text-uppercase font-size-sm">
                 <?= Yii::t('yii2admin', 'Дополнительно') ;?>
             </legend>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <?= $form
+                        ->field($model,'published_date', [
+                            'template' => '
+                                    {label}
+                                    <div class="input-group">
+                                        <span class="input-group-prepend">
+                                            <span class="btn bg-primary">
+                                                <i class="icon-calendar2"></i>
+                                            </span>
+                                        </span>
+                                        {input}
+                                    </div>
+                                    {error}'
+                        ])
+                        ->widget(DatePicker::class,[
+                            'clientOptions' => [
+                                'max' => false
+                            ]
+                        ])
+                    ?>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <?= $form
+                        ->field($model,'published_time', [
+                            'template' => '
+                                {label}
+                                <div class="input-group">
+                                    <span class="input-group-prepend">
+                                        <span class="btn bg-primary">
+                                            <i class="icon-alarm-add"></i>
+                                        </span>
+                                    </span>
+                                    {input}
+                                </div>
+                                {error}',
+                        ])
+                        ->widget(TimePicker::class, [
+                            'clientOptions' => [
+                                'hiddenName' => true,
+                            ]
+                        ])
+                    ?>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12">
                     <?= $form

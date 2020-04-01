@@ -50,9 +50,36 @@ class PostService extends Service
         $this->applyDomain($query);
     }
 
+    /**
+     * @inheritDoc
+     */
+    public function getDataProvider($queryParams = [], $config = [], $searchModel = null, $formName = null, $condition = null)
+    {
+        if(! $condition) {
+            $condition = function (ActiveQuery $query) {
+                $query->orderBy(['id' => SORT_DESC]);
+            };
+        }
+
+        return parent::getDataProvider($queryParams, $config, $searchModel, $formName, $condition);
+    }
 
     protected function beforeModelSave(Model $form, ActiveRecord $model, $is_new_record)
     {
+        $published_at = null;
+        if($form->published_date) {
+            $published_at = $form->published_date;
+        }
+
+        if($form->published_date && $form->published_time) {
+            $time = $form->published_time;
+            $published_at .= " {$time}:00";
+        } else if($published_at) {
+            $time = date('H:i');
+            $published_at .= " {$time}:00";
+        }
+
+        $model->published_at = $published_at ?? null;
         $oldData = $this->getOldData();
         $oldStatus = $model->status;
         if (isset($oldData['status'])) {
@@ -66,6 +93,7 @@ class PostService extends Service
 
     protected function afterModelSave(Model $form , ActiveRecord $model, $is_new_record)
     {
+        $form->customizeForm($model);
         $this->postTagsLinkService()->link($model->id, $form->selectedTags);
         $this->postCategoryService()->updatePostCount($form->category_id);
         parent::afterModelSave($form, $model, $is_new_record);

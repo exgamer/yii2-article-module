@@ -42,7 +42,7 @@ $this->viewHelper()->pushPageHeader();
     ],
     'columns' => [
         'id',
-        'title',
+        'header',
         'seo_name',
         [
             'attribute'=>'status',

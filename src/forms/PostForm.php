@@ -20,7 +20,7 @@ class PostForm extends BaseForm
     public $domain_id;
     public $locale;
     public $seo_name_md5_hash;
-    public $title;
+    public $header;
     public $anons;
     public $image;
     public $image_anons;
@@ -29,6 +29,8 @@ class PostForm extends BaseForm
     public $sort;
     public $status = 0;
     public $published_at;
+    public $published_date;
+    public $published_time;
 
     /**
      * Выбранные теги
@@ -47,7 +49,7 @@ class PostForm extends BaseForm
         return [
             [
                 [
-                    'title',
+                    'header',
                     'content',
                     'locale',
                     'category_id',
@@ -70,13 +72,25 @@ class PostForm extends BaseForm
                 ],
                 'safe'
             ],
+            [
+                'published_date',
+                'date',
+                'format' => 'php:Y-m-d'
+            ],
+            [
+                'published_time',
+                'date',
+                'format' => 'php:H:i'
+            ],
         ];
     }
 
     public function formAttributeLabels()
     {
         return [
-            'selectedTags' => Yii::t('handbook', 'Выбранные теги'),
+            'published_date' => \Yii::t('article', 'Дата публикации'),
+            'published_time' => \Yii::t('article', 'Время публикации'),
+            'selectedTags' => Yii::t('article', 'Выбранные теги'),
         ];
     }
 
@@ -89,12 +103,17 @@ class PostForm extends BaseForm
             $this->categoryParents = array_keys(Yii::$app->postCategoryService->getParentsByTree($this->category_id));
             $this->selectedTags = $model->getSelectedTagsIds();
         }
+
+        if($model && $model->published_at) {
+            $this->published_date = date('Y-m-d', strtotime($model->published_at));
+            $this->published_time = date('H:i', strtotime($model->published_at));
+        }
     }
 
 
     public function beforeValidate()
     {
-        if ($this->category_id){
+        if ($this->category_id) {
             $this->categoryParents = array_keys(Yii::$app->postCategoryService->getParentsByTree($this->category_id));
             if( Yii::$app->postCategoryService->hasChilds($this->category_id)) {
                 $this->categoryParents[] = $this->category_id;

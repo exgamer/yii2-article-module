@@ -78,7 +78,7 @@ $this->viewHelper()->pushPageHeader(['index'], $model::label(),'icon-list');
             'model' => $model,
             'attributes' => [
                 'id',
-                'title',
+                'header',
                 'anons',
                 [
                     'attribute'=>'Версии',

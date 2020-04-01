@@ -9,7 +9,7 @@ use concepture\yii2logic\enum\IsDeletedEnum;
         <?= $form->field($model,'id')->textInput();?>
     </div>
     <div class="col-lg-4 col-md-6 col-sm-12">
-        <?= $form->field($model,'title')->textInput();?>
+        <?= $form->field($model,'header')->textInput();?>
     </div>
     <div class="col-lg-4 col-md-6 col-sm-12">
         <?= $form->field($model,'seo_name')->textInput();?>

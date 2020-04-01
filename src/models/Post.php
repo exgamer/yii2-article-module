@@ -63,7 +63,7 @@ class Post extends ActiveRecord
      */
     public function toString()
     {
-        return $this->title;
+        return $this->header;
     }
 
     /**
@@ -101,7 +101,7 @@ class Post extends ActiveRecord
                 ],
                 [
                     [
-                        'title',
+                        'header',
                         'anons',
                         'seo_name_md5_hash',
                         'image',
@@ -151,9 +151,9 @@ class Post extends ActiveRecord
                 'image' => Yii::t('article','Изображение'),
                 'image_anons' => Yii::t('article','Изображение для анонса'),
                 'image_anons_big' => Yii::t('article','Изображение для анонса (большое)'),
-                'title' => Yii::t('article','Название'),
-                'anons' => Yii::t('article','Описание анонса'),
-                'content' => Yii::t('article','Контент'),
+                'header' => \Yii::t('common', 'Заголовок (H1)'),
+                'anons' => \Yii::t('common', 'Анонс'),
+                'content' => \Yii::t('common', 'Содержание'),
                 'created_at' => Yii::t('article','Дата создания'),
                 'updated_at' => Yii::t('article','Дата обновления'),
                 'published_at' => Yii::t('article','Дата публикации'),
