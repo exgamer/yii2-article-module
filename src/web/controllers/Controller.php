@@ -3,7 +3,7 @@
 namespace concepture\yii2article\web\controllers;
 
 use concepture\yii2user\enum\UserRoleEnum;
-use concepture\yii2logic\controllers\web\localized\tree\Controller as Base;
+use concepture\yii2logic\controllers\web\localized\Controller as Base;
 use kamaelkz\yii2admin\v1\modules\audit\actions\AuditAction;
 use kamaelkz\yii2admin\v1\modules\audit\actions\AuditRollbackAction;
 use kamaelkz\yii2admin\v1\modules\audit\services\AuditService;
