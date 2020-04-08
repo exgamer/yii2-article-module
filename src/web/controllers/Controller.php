@@ -10,8 +10,6 @@ use kamaelkz\yii2admin\v1\modules\audit\services\AuditService;
 use yii\helpers\ArrayHelper;
 
 /**
- * Базовый контроллер для модуля комментов
- *
  * Class Controller
  * @package concepture\yii2comment\web\controllers
  * @author Olzhas Kulzhambekov <exgamer@live.ru>
