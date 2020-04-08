@@ -3,11 +3,11 @@
 namespace concepture\yii2article\web\controllers;
 
 use concepture\yii2user\enum\UserRoleEnum;
-use concepture\yii2logic\controllers\web\localized\tree\Controller;
 use concepture\yii2logic\actions\web\localized\tree\StatusChangeAction;
 use concepture\yii2logic\actions\web\localized\tree\UndeleteAction;
 use kamaelkz\yii2cdnuploader\actions\web\ImageDeleteAction;
 use kamaelkz\yii2cdnuploader\actions\web\ImageUploadAction;
+use yii\helpers\ArrayHelper;
 
 /**
  * Class PostCategoryController
@@ -18,13 +18,13 @@ class PostCategoryController extends Controller
 {
     protected function getAccessRules()
     {
-        return [
+        return ArrayHelper::merge(parent::getAccessRules(), [
             [
                 'actions' => ['index', 'view','create', 'update', 'delete', 'undelete', 'status-change', 'image-upload', 'image-delete'],
                 'allow' => true,
                 'roles' => [UserRoleEnum::ADMIN],
             ]
-        ];
+        ]);
     }
 
 

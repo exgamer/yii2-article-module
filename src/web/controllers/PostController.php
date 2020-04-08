@@ -6,13 +6,13 @@ use kamaelkz\yii2admin\v1\controllers\traits\ControllerTrait;
 use concepture\yii2handbook\actions\PositionSortIndexAction;
 use concepture\yii2handbook\services\EntityTypePositionSortService;
 use concepture\yii2user\enum\UserRoleEnum;
-use concepture\yii2logic\controllers\web\localized\Controller;
 use concepture\yii2logic\actions\web\localized\StatusChangeAction;
 use concepture\yii2logic\actions\web\localized\UndeleteAction;
 use kamaelkz\yii2admin\v1\actions\EditableColumnAction;
 use kamaelkz\yii2admin\v1\actions\SortAction;
 use kamaelkz\yii2cdnuploader\actions\web\ImageDeleteAction;
 use kamaelkz\yii2cdnuploader\actions\web\ImageUploadAction;
+use yii\helpers\ArrayHelper;
 
 /**
  * Class PostController
@@ -25,7 +25,7 @@ class PostController extends Controller
 
     protected function getAccessRules()
     {
-        return [
+        return ArrayHelper::merge(parent::getAccessRules(), [
             [
                 'actions' => [
                     'index',
@@ -44,7 +44,7 @@ class PostController extends Controller
                 'allow' => true,
                 'roles' => [UserRoleEnum::ADMIN],
             ]
-        ];
+        ]);
     }
 
 
@@ -52,7 +52,7 @@ class PostController extends Controller
     {
         $actions = parent::actions();
 
-        return array_merge($actions,[
+        return ArrayHelper::merge($actions,[
             'status-change' => StatusChangeAction::class,
             'undelete' => UndeleteAction::class,
             'image-upload' => ImageUploadAction::class,
