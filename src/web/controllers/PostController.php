@@ -21,8 +21,6 @@ use yii\helpers\ArrayHelper;
  */
 class PostController extends Controller
 {
-    use ControllerTrait;
-
     protected function getAccessRules()
     {
         return ArrayHelper::merge(parent::getAccessRules(), [
