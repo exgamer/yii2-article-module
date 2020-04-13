@@ -26,11 +26,6 @@ class PostController extends Controller
         return ArrayHelper::merge(parent::getAccessRules(), [
             [
                 'actions' => [
-                    'index',
-                    'view',
-                    'create',
-                    'update',
-                    'delete',
                     'undelete',
                     'status-change',
                     'image-upload',

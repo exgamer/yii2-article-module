@@ -20,7 +20,7 @@ class PostCategoryController extends Controller
     {
         return ArrayHelper::merge(parent::getAccessRules(), [
             [
-                'actions' => ['index', 'view','create', 'update', 'delete', 'undelete', 'status-change', 'image-upload', 'image-delete'],
+                'actions' => ['undelete', 'status-change', 'image-upload', 'image-delete'],
                 'allow' => true,
                 'roles' => [UserRoleEnum::ADMIN],
             ]
