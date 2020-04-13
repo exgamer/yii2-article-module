@@ -16,6 +16,9 @@ use yii\helpers\ArrayHelper;
  */
 class PostCategoryController extends Controller
 {
+    /** @var bool */
+    public $localized = true;
+
     protected function getAccessRules()
     {
         return ArrayHelper::merge(parent::getAccessRules(), [
