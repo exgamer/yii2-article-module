@@ -16,16 +16,19 @@ use yii\helpers\ArrayHelper;
  */
 class PostCategoryController extends Controller
 {
-//    protected function getAccessRules()
-//    {
-//        return ArrayHelper::merge(parent::getAccessRules(), [
-//            [
-//                'actions' => ['index', 'view','create', 'update', 'delete', 'undelete', 'status-change', 'image-upload', 'image-delete'],
-//                'allow' => true,
-//                'roles' => [UserRoleEnum::ADMIN],
-//            ]
-//        ]);
-//    }
+    /** @var bool */
+    public $localized = true;
+
+    protected function getAccessRules()
+    {
+        return ArrayHelper::merge(parent::getAccessRules(), [
+            [
+                'actions' => ['undelete', 'status-change', 'image-upload', 'image-delete'],
+                'allow' => true,
+                'roles' => [UserRoleEnum::ADMIN],
+            ]
+        ]);
+    }
 
 
     public function actions()
