@@ -24,25 +24,6 @@ class PostController extends Controller
     /** @var bool */
     public $localized = true;
 
-    protected function getAccessRules()
-    {
-        return ArrayHelper::merge(parent::getAccessRules(), [
-            [
-                'actions' => [
-                    'undelete',
-                    'status-change',
-                    'image-upload',
-                    'image-delete',
-                    PositionSortIndexAction::actionName(),
-                    EditableColumnAction::actionName(),
-                    SortAction::actionName(),
-                ],
-                'allow' => true,
-                'roles' => [UserRoleEnum::ADMIN],
-            ]
-        ]);
-    }
-
 
     public function actions()
     {
