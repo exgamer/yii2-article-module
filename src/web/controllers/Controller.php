@@ -8,6 +8,7 @@ use kamaelkz\yii2admin\v1\modules\audit\actions\AuditAction;
 use kamaelkz\yii2admin\v1\modules\audit\actions\AuditRollbackAction;
 use kamaelkz\yii2admin\v1\modules\audit\services\AuditService;
 use yii\helpers\ArrayHelper;
+use kamaelkz\yii2admin\v1\controllers\traits\ControllerTrait;
 
 /**
  * Class Controller
@@ -16,6 +17,8 @@ use yii\helpers\ArrayHelper;
  */
 abstract class Controller extends Base
 {
+    use ControllerTrait;
+
     /**
      * @param \yii\base\Action $action
      * @return bool
@@ -37,27 +40,27 @@ abstract class Controller extends Base
         return parent::beforeAction($action);
     }
 
-    /**
-     * @return array
-     */
-    protected function getAccessRules()
-    {
-        return ArrayHelper::merge(
-            parent::getAccessRules(),
-            [
-                [
-                    'actions' => [
-                        AuditAction::actionName(),
-                        AuditRollbackAction::actionName(),
-                    ],
-                    'allow' => true,
-                    'roles' => [
-                        UserRoleEnum::SUPER_ADMIN,
-                    ],
-                ],
-            ]
-        );
-    }
+//    /**
+//     * @return array
+//     */
+//    protected function getAccessRules()
+//    {
+//        return ArrayHelper::merge(
+//            parent::getAccessRules(),
+//            [
+//                [
+//                    'actions' => [
+//                        AuditAction::actionName(),
+//                        AuditRollbackAction::actionName(),
+//                    ],
+//                    'allow' => true,
+//                    'roles' => [
+//                        UserRoleEnum::SUPER_ADMIN,
+//                    ],
+//                ],
+//            ]
+//        );
+//    }
 
     /**
      * @return array
