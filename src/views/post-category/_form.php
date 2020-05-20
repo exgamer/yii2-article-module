@@ -54,7 +54,7 @@ $saveButton = Html::submitButton(
         </legend>
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12">
-                <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
+                <?= $form->field($model, 'header')->textInput(['maxlength' => true]) ?>
             </div>
         </div>
         <div class="row">
@@ -98,9 +98,6 @@ $saveButton = Html::submitButton(
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-12">
                 <?= $form->field($model, 'seo_name')->textInput(['maxlength' => true, 'disabled' => isset($originModel) ? true : false]) ?>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-12">
-                <?= $form->field($model, 'seo_h1')->textInput(['maxlength' => true]) ?>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12">
                 <?= $form->field($model, 'seo_title')->textInput(['maxlength' => true]) ?>

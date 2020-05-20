@@ -43,7 +43,7 @@ $this->viewHelper()->pushPageHeader(['create', 'parent_id' => $searchModel->pare
     ],
     'columns' => [
         'id',
-        'title',
+        'header',
         'seo_name',
         [
             'attribute'=>'status',

@@ -34,7 +34,7 @@ class PostCategorySearch extends PostCategory
             ],
             [
                 [
-                    'title',
+                    'header',
                     'seo_name'
                 ],
                 'safe'
@@ -61,13 +61,13 @@ class PostCategorySearch extends PostCategory
             'is_deleted' => $this->is_deleted
         ]);
         $query->andFilterWhere(['like', static::localizationAlias() . ".seo_name", $this->seo_name]);
-        $query->andFilterWhere(['like', static::localizationAlias() . ".title", $this->title]);
+        $query->andFilterWhere(['like', static::localizationAlias() . ".header", $this->header]);
     }
 
     public function extendDataProvider(ActiveDataProvider $dataProvider)
     {
         $this->addSortByLocalizationAttribute($dataProvider, 'seo_name');
-        $this->addSortByLocalizationAttribute($dataProvider, 'title');
+        $this->addSortByLocalizationAttribute($dataProvider, 'header');
     }
 
     public static function getListSearchKeyAttribute()
@@ -77,7 +77,7 @@ class PostCategorySearch extends PostCategory
 
     public static function getListSearchAttribute()
     {
-        return 'title';
+        return 'header';
     }
 
     public function getParentWhereFunction()

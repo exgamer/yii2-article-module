@@ -62,7 +62,7 @@ class PostCategory extends ActiveRecord
      */
     public function toString()
     {
-        return $this->title;
+        return $this->header;
     }
 
     /**
@@ -100,7 +100,7 @@ class PostCategory extends ActiveRecord
             ],
             [
                 [
-                    'title',
+                    'header',
                     'anons',
                     'seo_name_md5_hash',
                     'image',
@@ -141,7 +141,7 @@ class PostCategory extends ActiveRecord
             'image' => Yii::t('article','Изображение'),
             'image_anons' => Yii::t('article','Изображение для анонса'),
             'locale' => Yii::t('article','Язык'),
-            'title' => Yii::t('article','Название'),
+            'header' => Yii::t('article','Название'),
             'anons' => Yii::t('article','Описание анонса'),
             'content' => Yii::t('article','Контент'),
             'created_at' => Yii::t('article','Дата создания'),
@@ -176,7 +176,7 @@ class PostCategory extends ActiveRecord
     public function getParentTitle()
     {
         if (isset($this->parent)){
-            return $this->parent->title;
+            return $this->parent->header;
         }
 
         return null;

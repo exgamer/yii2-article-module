@@ -23,7 +23,7 @@ class PostCategoryForm extends Form
     public $seo_name_md5_hash;
     public $image;
     public $image_anons;
-    public $title;
+    public $header;
     public $anons;
     public $content;
     public $status = StatusEnum::INACTIVE;
@@ -36,7 +36,7 @@ class PostCategoryForm extends Form
         return [
             [
                 [
-                    'title',
+                    'header',
                     'locale',
                 ],
                 'required'
