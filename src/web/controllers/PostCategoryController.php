@@ -40,7 +40,7 @@ class PostCategoryController extends Controller
                     'header',
                     'seo_name',
                 ],
-                'labelColumn' => 'title',
+                'labelColumn' => 'header',
             ],
             EditableColumnAction::actionName() => [
                 'class' => EditableColumnAction::class,
