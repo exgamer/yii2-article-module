@@ -188,10 +188,20 @@ class Post extends ActiveRecord
         return $this->hasOne(PostCategory::class, ['id' => 'category_id']);
     }
 
+    /**
+     * @deprecated use getCategoryHeader()
+     * @return string|null
+     */
     public function getCategoryTitle()
     {
+
+        return $this->getCategoryHeader();
+    }
+
+    public function getCategoryHeader()
+    {
         if (isset($this->category)){
-            return $this->category->title;
+            return $this->category->header;
         }
 
         return null;
