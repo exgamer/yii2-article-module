@@ -28,6 +28,8 @@ class PostCategoryForm extends Form
     public $content;
     public $status = StatusEnum::INACTIVE;
 
+    public $counters = [];
+
     /**
      * @see Form::formRules()
      */

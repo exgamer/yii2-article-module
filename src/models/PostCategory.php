@@ -1,6 +1,7 @@
 <?php
 namespace concepture\yii2article\models;
 
+use concepture\yii2article\pojo\PostCategoryCounter;
 use concepture\yii2logic\validators\SeoNameValidator;
 use concepture\yii2user\models\User;
 use concepture\yii2logic\validators\UniquePropertyValidator;
@@ -45,6 +46,20 @@ class PostCategory extends ActiveRecord
 //    public $title;
 //    public $anons;
 //    public $content;
+
+    public function behaviors()
+    {
+        return [
+            'JsonFieldsBehavior' => [
+                'class' => 'concepture\yii2logic\models\behaviors\JsonFieldsBehavior',
+                'jsonAttr' => [
+                    'counters' => [
+                        'class' => PostCategoryCounter::class,
+                    ],
+                ],
+            ],
+        ];
+    }
 
     /**
      * @see \concepture\yii2logic\models\ActiveRecord:label()
@@ -123,6 +138,12 @@ class PostCategory extends ActiveRecord
                 UniqueLocalizedValidator::class,
                 'fields' => ['domain_id'],
                 'localizedFields' => ['seo_name', 'locale']
+            ],
+            [
+                [
+                    'counters',
+                ],
+                'safe'
             ]
             ]
         );
