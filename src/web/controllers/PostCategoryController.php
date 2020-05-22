@@ -37,7 +37,7 @@ class PostCategoryController extends Controller
                 'class' => PositionSortIndexAction::class,
                 'entityColumns' => [
                     'id',
-                    'title',
+                    'header',
                     'seo_name',
                 ],
                 'labelColumn' => 'title',
