@@ -15,6 +15,9 @@ use concepture\yii2logic\services\traits\TreeReadTrait;
 use concepture\yii2handbook\services\traits\ModifySupportTrait as HandbookModifySupportTrait;
 use concepture\yii2handbook\services\traits\ReadSupportTrait as HandbookReadSupportTrait;
 use concepture\yii2user\services\traits\UserSupportTrait;
+use yii\db\Expression;
+use yii\helpers\ArrayHelper;
+use yii\web\NotFoundHttpException;
 
 /**
  * Class PostCategoryService
@@ -57,9 +60,21 @@ class PostCategoryService extends Service
      */
     public function updatePostCount($id)
     {
-        $postCount = $this->postService()->getCount(['category_id' => $id]);
-        PostCategory::updateAll(['post_count' => $postCount],
-            'id = :id AND status = :status AND is_deleted = :is_deleted',
-            ['id' => $id, 'status' => StatusEnum::ACTIVE, 'is_deleted' => IsDeletedEnum::NOT_DELETED]);
+        $category = $this->findById($id);
+        if (! $category) {
+            throw new NotFoundHttpException("category with ID  " . $id . " not found");
+        }
+
+        $posts = $this->postService()->getAllByCondition(function(\concepture\yii2logic\db\ActiveQuery $query) use ($id){
+            $query->resetCondition();
+            $query->select( new Expression('count(id) as count, domain_id'));
+            $query->andWhere(['category_id' => $id, 'status' => StatusEnum::ACTIVE, 'is_deleted' => IsDeletedEnum::NOT_DELETED]);
+            $query->groupBy('domain_id');
+        }, true);
+        if ($posts) {
+            $category->counters = ArrayHelper::map($posts, 'domain_id', 'count');
+            $category->post_count = array_sum($category->counters);
+            $category->save(false);
+        }
     }
 }
