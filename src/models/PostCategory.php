@@ -47,19 +47,17 @@ class PostCategory extends ActiveRecord
 //    public $anons;
 //    public $content;
 
-//    public function behaviors()
-//    {
-//        return [
-//            'JsonFieldsBehavior' => [
-//                'class' => 'concepture\yii2logic\models\behaviors\JsonFieldsBehavior',
-//                'jsonAttr' => [
-//                    'counters' => [
-//                        'class' => PostCategoryCounter::class,
-//                    ],
-//                ],
-//            ],
-//        ];
-//    }
+    public function behaviors()
+    {
+        return [
+            'JsonFieldsBehavior' => [
+                'class' => 'concepture\yii2logic\models\behaviors\JsonFieldsBehavior',
+                'jsonAttr' => [
+                    'counters'
+                ],
+            ],
+        ];
+    }
 
     /**
      * @see \concepture\yii2logic\models\ActiveRecord:label()
