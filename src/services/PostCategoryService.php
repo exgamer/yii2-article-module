@@ -83,6 +83,10 @@ class PostCategoryService extends Service
             $category->counters = ArrayHelper::map($posts, 'domain_id', 'count');
             $category->post_count = array_sum($category->counters);
             $category->save(false);
+        }else{
+            $category->counters = [];
+            $category->post_count = array_sum($category->counters);
+            $category->save(false);
         }
     }
 }
