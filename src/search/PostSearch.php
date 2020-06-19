@@ -64,6 +64,7 @@ class PostSearch extends Post
 
     public function extendDataProvider(ActiveDataProvider $dataProvider)
     {
+        parent::extendDataProvider($dataProvider);
         $this->addSortByLocalizationAttribute($dataProvider, 'seo_name');
         $this->addSortByLocalizationAttribute($dataProvider, 'header');
     }

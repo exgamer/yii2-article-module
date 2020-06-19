@@ -66,6 +66,7 @@ class PostCategorySearch extends PostCategory
 
     public function extendDataProvider(ActiveDataProvider $dataProvider)
     {
+        parent::extendDataProvider($dataProvider);
         $this->addSortByLocalizationAttribute($dataProvider, 'seo_name');
         $this->addSortByLocalizationAttribute($dataProvider, 'header');
     }
