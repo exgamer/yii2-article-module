@@ -1,6 +1,8 @@
 <?php
 namespace concepture\yii2article\services;
 
+use concepture\yii2logic\services\events\modify\AfterChangeStatusEvent;
+use concepture\yii2logic\services\events\modify\AfterModifyEvent;
 use concepture\yii2logic\services\traits\ViewsTrait;
 use yii\db\ActiveQuery;
 use concepture\yii2article\traits\ServicesTrait as ArticleServices;
@@ -97,6 +99,19 @@ class PostService extends Service
         $this->postTagsLinkService()->link($model->id, $form->selectedTags);
         $this->postCategoryService()->updatePostCount($form->category_id, $this->getOldDataAttribute('category_id'));
         parent::afterModelSave($form, $model, $is_new_record);
+    }
+
+    protected function afterStatusChange(ActiveRecord $model, $status)
+    {
+        $this->trigger(static::EVENT_AFTER_CHANGE_STATUS, new AfterChangeStatusEvent(['model' => $model, 'status' => $status]));
+        $this->trigger(static::EVENT_AFTER_MODIFY, new AfterModifyEvent(['model' => $model]));
+        $this->postCategoryService()->updatePostCount($model->category_id);
+    }
+
+    protected function afterDelete(ActiveRecord $model)
+    {
+        parent::afterDelete($model);
+        $this->postCategoryService()->updatePostCount($model->category_id);
     }
 
     /**
