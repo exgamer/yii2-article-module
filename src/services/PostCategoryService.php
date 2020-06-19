@@ -58,7 +58,15 @@ class PostCategoryService extends Service
      *
      * @param $id
      */
-    public function updatePostCount($id)
+    public function updatePostCount($id, $old_id = null)
+    {
+        $this->updateCategoryPostCount($id);
+        if ($old_id) {
+            $this->updateCategoryPostCount($old_id);
+        }
+    }
+
+    public function updateCategoryPostCount($id)
     {
         $category = $this->findById($id);
         if (! $category) {

@@ -85,7 +85,7 @@ class PostService extends Service
         if (isset($oldData['status'])) {
             $oldStatus = $oldData['status'];
         }
-        
+
         if (($is_new_record || ($oldStatus != $model->status)) && $model->status == StatusEnum::ACTIVE && !$model->published_at) {
             $model->published_at = date('Y-m-d H:i:s');
         }
@@ -95,7 +95,7 @@ class PostService extends Service
     {
         $form->customizeForm($model);
         $this->postTagsLinkService()->link($model->id, $form->selectedTags);
-        $this->postCategoryService()->updatePostCount($form->category_id);
+        $this->postCategoryService()->updatePostCount($form->category_id, $this->getOldDataAttribute('category_id'));
         parent::afterModelSave($form, $model, $is_new_record);
     }
 
