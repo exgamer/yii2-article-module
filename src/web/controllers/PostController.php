@@ -53,4 +53,13 @@ class PostController extends Controller
             ],
         ]);
     }
+
+    public function getModel($id, $locale = null)
+    {
+        $originModelClass = $this->getService()->getRelatedModel();
+        $originModelClass::setLocale($locale);
+        $model = $this->getService()->findById($id);
+
+        return $model;
+    }
 }
