@@ -68,29 +68,11 @@ class PostService extends Service
 
     protected function beforeModelSave(Model $form, ActiveRecord $model, $is_new_record)
     {
-        $published_at = null;
-        if($form->published_date) {
-            $published_at = $form->published_date;
-        }
-
-        if($form->published_date && $form->published_time) {
-            $time = $form->published_time;
-            $published_at .= " {$time}:00";
-        } else if($published_at) {
-            $time = date('H:i');
-            $published_at .= " {$time}:00";
-        }
-
-        $model->published_at = $published_at ?? null;
         $oldData = $this->getOldData();
-        $oldStatus = $model->status;
-        if (isset($oldData['status'])) {
-            $oldStatus = $oldData['status'];
-        }
+        $oldStatus = isset($oldData['status']) ? $oldData['status'] : null;
 
-        if (($is_new_record || ($oldStatus != $model->status)) && $model->status == StatusEnum::ACTIVE && !$model->published_at) {
-            $model->published_at = date('Y-m-d H:i:s');
-        }
+        $this->setPublishedDate($form, $model, $is_new_record, $oldStatus);
+        parent::beforeModelSave($form, $model, $is_new_record);
     }
 
     protected function afterModelSave(Model $form , ActiveRecord $model, $is_new_record)
@@ -99,6 +81,12 @@ class PostService extends Service
         $this->postTagsLinkService()->link($model->id, $form->selectedTags);
         $this->postCategoryService()->updatePostCount($form->category_id, $this->getOldDataAttribute('category_id'));
         parent::afterModelSave($form, $model, $is_new_record);
+    }
+
+    protected function beforeStatusChange(ActiveRecord $model, $status)
+    {
+        parent::beforeStatusChange($model, $status);
+        $this->setPublishedDate($form, $model, $is_new_record, $status);
     }
 
     protected function afterStatusChange(ActiveRecord $model, $status)
@@ -132,5 +120,28 @@ class PostService extends Service
             $query->andWhere("status = :status", [':status' => StatusEnum::ACTIVE]);
             $query->andWhere("is_deleted = :is_deleted", [':is_deleted' => IsDeletedEnum::NOT_DELETED]);
         });
+    }
+
+    protected function setPublishedDate(Model $form, ActiveRecord $model, $is_new_record, $oldStatus = null)
+    {
+        $published_at = null;
+        if($form->published_date) {
+            $published_at = $form->published_date;
+        }
+
+        if($form->published_date && $form->published_time) {
+            $time = $form->published_time;
+            $published_at .= " {$time}:00";
+        } else if($published_at) {
+            $time = date('H:i');
+            $published_at .= " {$time}:00";
+        }
+
+        $model->published_at = $published_at ?? null;
+        $oldStatus = $oldStatus !== null ? $oldStatus : $model->status;
+
+        if (($is_new_record || ($oldStatus != $model->status)) && $model->status == StatusEnum::ACTIVE && !$model->published_at) {
+            $model->published_at = date('Y-m-d H:i:s');
+        }
     }
 }
