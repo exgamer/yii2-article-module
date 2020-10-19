@@ -85,8 +85,9 @@ class PostService extends Service
 
     protected function beforeStatusChange(ActiveRecord $model, $status)
     {
-        parent::beforeStatusChange($model, $status);
-        $this->setPublishedDate($form, $model, $is_new_record, $status);
+        $oldStatus = $model->status;
+        $model->status = $status;
+        $this->setPublishedDate(null, $model, false, $oldStatus);
     }
 
     protected function afterStatusChange(ActiveRecord $model, $status)
@@ -122,19 +123,22 @@ class PostService extends Service
         });
     }
 
-    protected function setPublishedDate(Model $form, ActiveRecord $model, $is_new_record, $oldStatus = null)
+    protected function setPublishedDate($form, ActiveRecord $model, $is_new_record, $oldStatus = null)
     {
         $published_at = null;
-        if($form->published_date) {
-            $published_at = $form->published_date;
-        }
 
-        if($form->published_date && $form->published_time) {
-            $time = $form->published_time;
-            $published_at .= " {$time}:00";
-        } else if($published_at) {
-            $time = date('H:i');
-            $published_at .= " {$time}:00";
+        if ($form and $form instanceof Model) {
+            if($form->published_date) {
+                $published_at = $form->published_date;
+            }
+
+            if($form->published_date && $form->published_time) {
+                $time = $form->published_time;
+                $published_at .= " {$time}:00";
+            } else if($published_at) {
+                $time = date('H:i');
+                $published_at .= " {$time}:00";
+            }
         }
 
         $model->published_at = $published_at ?? null;
