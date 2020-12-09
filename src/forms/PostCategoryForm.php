@@ -26,6 +26,7 @@ class PostCategoryForm extends Form
     public $header;
     public $anons;
     public $content;
+    public $type;
     public $status = StatusEnum::INACTIVE;
 
     public $counters = [];
